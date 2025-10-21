@@ -6,7 +6,7 @@
 #    By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/11 17:58:52 by abaryshe          #+#    #+#              #
-#    Updated: 2025/08/10 20:30:52 by abaryshe         ###   ########.fr        #
+#    Updated: 2025/10/21 22:58:17 by abaryshe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,25 +29,25 @@ CMPFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I ${INC_DIR}
 FREM = rm -f
 
-# character functions in char directory:
+# char directory:
 CHAR_FILES = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			ft_isprint.c ft_isspace.c ft_tolower.c ft_toupper.c
-# conversion functions in conversion directory:
+# conversion directory:
 CONV_FILES = ft_atoi.c ft_itoa.c ft_mystrtol.c
-# error handling functions in error directory:
+# error error directory:
 ERROR_FILES = print_error.c print_error_with_code.c ft_dprintf.c
-# file descriptor functions in fd directory:
+# file fd directory:
 FD_FILES = ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-# get_next_line functions in gnl directory:
+# gnl directory:
 GNL_FILES = get_next_line.c get_next_line_utils.c
-# linked list functions in list directory:
+# linked list directory:
 LIST_FILES = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 			ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 			ft_lstiter.c ft_lstmap.c
-# memory functions in mem directory:
+# mem directory:
 MEM_FILES = ft_bzero.c ft_calloc.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
 			ft_memmove.c ft_memset.c
-# string functions in str directory:
+# str directory:
 STR_FILES = ft_split.c  ft_strchr.c ft_strcpy.c ft_strdup.c \
 			ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c \
 			ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
