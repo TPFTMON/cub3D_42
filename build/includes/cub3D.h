@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/22 14:45:11 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/23 04:55:35 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 // <<<<<<<<<<<<<<<<<<<<< INCLUDES >>>>>>>>>>>>>>>>>>>>>
 
+# include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include <unistd.h>
-# include <math.h>
 # include <sys/time.h>
+# include <unistd.h>
 
 // <<<<<<<<<<<<<<<<<<<<< MACROS >>>>>>>>>>>>>>>>>>>>>
 
@@ -30,7 +30,7 @@
 # define FAIL 1
 
 // --- Exit Codes ---
-# define EXC_OK 0  // We MAY want to add our own different codes. MAYBE for parsing.
+# define EXC_OK 0   // We MAY want to add our own different codes. MAYBE for parsing.
 # define EXC_CRIT 1 // !!!
 # define EXC_PARS 2 // !!!
 
@@ -41,7 +41,6 @@
 
 // --- Messages ---
 
-
 // // --- Some Colors ---
 // # define RESET "\e[0m"
 // # define BOLD "\e[1m"
@@ -49,20 +48,92 @@
 // # define YELLOW "\e[33m"
 // # define CYAN "\e[36m"
 
+// --- Required By Game ---
+# define TILE_EMPTY 0
+# define TILE_WALL 1
+# define TILE_OUT  -1
+
+typedef enum	e_tex
+{
+	NO, 	// North
+	SO, 	// South
+	WE, 	// West
+	EA, 	// East
+	TEX_NB  // Number of textures
+}	t_tex;
+
 // <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
 
+typedef struct s_img
+{
+	void		*mlx_img;
+	char		*addr; // mlx_get_data_addr
 
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
+
+typedef struct s_player
+{
+	double		pos_x;
+	double		pos_y;             // position in map coords (float)
+
+	double		dir_x;
+	double		dir_y;     // direction vector (normalized)
+
+	double		plane_x;
+	double		plane_y; // camera plane (perp to dir)
+
+	double		move_speed;
+	double		rot_speed;
+}				t_player;
+
+typedef struct s_map
+{
+	char **raw;     // array of strings from parser (keep for error messages)
+
+	int width;      // max row length
+	int height;     // number of rows
+	char **grid;    // rectangular map (same dims as width x height)
+}				t_map;
+
+typedef struct s_data
+{
+	void		*mlx;
+	void		*win;
+	int			win_width;
+	int			win_height;
+
+	t_img		screen;
+	t_img		textures[TEX_NB]; // EA, WE, NO, SO
+	int			floor_color; // packed RGB
+	int			ceil_color;
+
+	t_player	player;
+	t_map		map;
+
+	int			key_w;
+	int			key_s;
+	int			key_a;
+	int			key_d;
+	int			key_l;
+	int			key_r;
+
+	double		delta_time;
+}				t_data;
 
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
 
 
 
 
+// testing: parsing: parsing.c:
+void			parsing_report(void);
 
-//testing: parsing: parsing.c:
-void	parsing_report(void);
-
-//testing: player: player.c
-void	player_report(void);
+// testing: engine: engine.c
+void			engine_report(void);
 
 #endif
