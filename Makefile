@@ -6,7 +6,7 @@
 #    By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 13:52:33 by abaryshe          #+#    #+#              #
-#    Updated: 2025/10/24 05:06:53 by abaryshe         ###   ########.fr        #
+#    Updated: 2025/10/24 05:23:23 by abaryshe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,9 @@ INCLUDES = -I ${INC_DIR} -I ${LIBFT_DIR}/includes -I ${MLX_DIR}
 LIBS_WITH_FLAGS = ${LIBFT} ${MLX} -lXext -lX11 -lm
 
 # --- Sources ---
+# The files to compile in parsing derectory go HERE
+# || || || || || ||
+# \/ \/ \/ \/ \/ \/
 PARS_FILES = parsing.c
 ENGINE_FILES = engine.c
 
