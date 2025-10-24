@@ -6,7 +6,7 @@
 #    By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 13:52:33 by abaryshe          #+#    #+#              #
-#    Updated: 2025/10/24 05:24:28 by abaryshe         ###   ########.fr        #
+#    Updated: 2025/10/24 07:45:49 by abaryshe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ LIBS_WITH_FLAGS = ${LIBFT} ${MLX} -lXext -lX11 -lm
 # || || || || || ||
 # \/ \/ \/ \/ \/ \/
 PARS_FILES = parsing.c
-ENGINE_FILES = engine.c
+ENGINE_FILES = engine.c init.c
 
 PARS_SRCS = $(addprefix ${PARS_DIR}/, ${PARS_FILES}) #!!!
 ENGINE_SRCS = $(addprefix ${ENGINE_DIR}/, ${ENGINE_FILES})

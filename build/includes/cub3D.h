@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/24 04:08:58 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/24 07:45:08 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // <<<<<<<<<<<<<<<<<<<<< INCLUDES >>>>>>>>>>>>>>>>>>>>>
 
 # include "libft.h"
+# include "mlx.h"
 
 # include <math.h>
 # include <stdbool.h>
@@ -31,17 +32,24 @@
 # define SUCCESS 0
 # define FAIL 1
 
-// --- Exit Codes ---
-# define EXC_OK 0   // We MAY want to add our own different codes. MAYBE for parsing.
-# define EXC_CRIT 1 // !!!
-# define EXC_PARS 2 // !!!
-
 // --- File Descriptors ---
 # define STDIN_FD 0
 # define STDOUT_FD 1
 # define STDERR_FD 2
 
+// --- Exit Codes ---
+# define EXC_OK 0   // We MAY want to add our own different codes. MAYBE for parsing.
+# define EXC_CRIT 1 // !!!
+# define EXC_PARS 2 // !!!
+
+// --- Internal Error Codes ---
+# define OKAY 0
+# define CRITICAL 1
+# define SYNTAX 2
+
 // --- Messages ---
+
+
 
 // // --- Some Colors ---
 // # define RESET "\e[0m"
@@ -68,7 +76,7 @@ typedef enum	e_tex
 
 typedef struct s_img
 {
-	void		*mlx_img;
+	void		*img_ptr;
 	char		*addr; // mlx_get_data_addr
 
 	int			bpp;
@@ -102,10 +110,10 @@ typedef struct s_map
 	char **grid;    // rectangular map (same dims as width x height)
 }				t_map;
 
-typedef struct s_data
+typedef struct s_cube
 {
-	void		*mlx;
-	void		*win;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	int			win_width;
 	int			win_height;
 
@@ -125,11 +133,17 @@ typedef struct s_data
 	int			key_r;
 
 	double		delta_time;
-}				t_data;
+}				t_cube;
 
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
 
+// -------------------- parsing --------------------
 
+// ...
+
+// -------------------- engine --------------------
+// init.c:
+int				init_mlx_cube(t_cube *cube);
 
 
 // testing: parsing: parsing.c:
