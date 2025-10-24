@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/24 07:45:08 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/24 07:51:27 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,8 @@ typedef struct s_cube
 int				init_mlx_cube(t_cube *cube);
 
 
-// testing: parsing: parsing.c:
+// testing: parsing.c + engine.c:
 void			parsing_report(void);
-
-// testing: engine: engine.c
 void			engine_report(void);
 
 #endif
