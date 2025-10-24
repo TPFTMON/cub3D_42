@@ -6,7 +6,7 @@
 #    By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 13:52:33 by abaryshe          #+#    #+#              #
-#    Updated: 2025/10/24 04:35:37 by abaryshe         ###   ########.fr        #
+#    Updated: 2025/10/24 05:06:53 by abaryshe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ clean:
 
 fclean: clean
 	${FREM} ${NAME}
+	${FREM} ${TEST_NAME}
 	${FREM} ${MSLIB}
 	${FREM} ${TESTING}
 	${MAKE} -C ${LIBFT_DIR} fclean
