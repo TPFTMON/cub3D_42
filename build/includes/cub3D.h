@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/23 04:55:35 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/24 04:08:58 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_H
 
 // <<<<<<<<<<<<<<<<<<<<< INCLUDES >>>>>>>>>>>>>>>>>>>>>
+
+# include "libft.h"
 
 # include <math.h>
 # include <stdbool.h>
@@ -53,6 +55,8 @@
 # define TILE_WALL 1
 # define TILE_OUT  -1
 
+// <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
+
 typedef enum	e_tex
 {
 	NO, 	// North
@@ -60,9 +64,7 @@ typedef enum	e_tex
 	WE, 	// West
 	EA, 	// East
 	TEX_NB  // Number of textures
-}	t_tex;
-
-// <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
+}			t_tex;
 
 typedef struct s_img
 {
@@ -82,7 +84,7 @@ typedef struct s_player
 	double		pos_y;             // position in map coords (float)
 
 	double		dir_x;
-	double		dir_y;     // direction vector (normalized)
+	double		dir_y;       // direction vector (normalized)
 
 	double		plane_x;
 	double		plane_y; // camera plane (perp to dir)

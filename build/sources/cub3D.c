@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:57:17 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/23 04:34:00 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/24 04:37:08 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int	main(int argc, char **argv)
 	parsing_report();
 	engine_report();
 
+	char	*miaou = "\e[1;32mմյաու մյաու մյաու մյաու մյաու\e[0m\n";
+	ft_strlen(miaou);
+	printf("%s", miaou);
 	// THEN THE ENGINE DOES HIS GAME LOOP
 	return (0);
 }
