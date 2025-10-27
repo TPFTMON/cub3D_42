@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/24 07:51:27 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:29:10 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,11 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char **raw;     // array of strings from parser (keep for error messages)
+	char		**raw;     // array of strings from parser (keep for error messages)
 
-	int width;      // max row length
-	int height;     // number of rows
-	char **grid;    // rectangular map (same dims as width x height)
+	int			width;      // max row length
+	int			height;     // number of rows
+	char		**grid;    // rectangular map (same dims as width x height)
 }				t_map;
 
 typedef struct s_cube
@@ -137,13 +137,16 @@ typedef struct s_cube
 
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
 
+// -------------------- general --------------------
+// init.c:
+int				init_mlx_cube(t_cube *cube);
+
+
 // -------------------- parsing --------------------
 
 // ...
 
 // -------------------- engine --------------------
-// init.c:
-int				init_mlx_cube(t_cube *cube);
 
 
 // testing: parsing.c + engine.c:

@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 07:12:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/24 07:46:23 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:31:37 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	init_mlx_cube(t_cube *cube)
 {
 	if (cube == NULL)
 		return (print_error_with_code(NULL, "cube is NULL\n", CRITICAL));
+
 	cube->mlx_ptr = mlx_init();
 	if (!cube->mlx_ptr)
 		return (print_error_with_code("mlx_init",
