@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/27 17:29:10 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/28 20:36:31 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define SYNTAX 2
 
 // --- Messages ---
-
+# define ERR_CRITICAL "\e[1;31mcritical error\e[0m: memory failure.\n"
 
 
 // // --- Some Colors ---
@@ -129,8 +129,8 @@ typedef struct s_cube
 	int			key_s;
 	int			key_a;
 	int			key_d;
-	int			key_l;
-	int			key_r;
+	int			key_lar;
+	int			key_rar;
 
 	double		delta_time;
 }				t_cube;

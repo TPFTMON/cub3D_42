@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:57:17 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/24 07:44:56 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/28 20:30:55 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_cube	*cube = NULL;
 
-	(void)argc;
-	(void)argv;
+	cube = init_cube_data(argv, argv);
 	// PARSING IS HAPPENING HERE + INITIALIZATION
 	// +
 	// DATA FOR ENGINE WRITTEN TO STRUCT
