@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/31 20:25:12 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:03:11 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ typedef struct s_player
 
 	double		move_speed;
 	double		rot_speed;
+
+	t_tex		direction;
 }				t_player;
 
 typedef struct s_map
@@ -108,24 +110,9 @@ typedef struct s_map
 	int			width;      // max row length
 	int			height;     // number of rows
 	char		**grid;    // rectangular map (same dims as width x height)
+
+	char		*texture_paths[TEX_NB];
 }				t_map;
-
-// typedef struct s_keys
-// {
-// 	int			key_w;
-// 	int			key_s;
-// 	int			key_a;
-// 	int			key_d;
-// 	int			key_lar;
-// 	int			key_rar;
-
-// 	bool		w_pressed;
-// 	bool		s_pressed;
-// 	bool		a_pressed;
-// 	bool		d_pressed;
-// 	bool		lar_pressed;
-// 	bool		rar_pressed;
-// }				t_keys;
 
 typedef struct s_cube
 {
