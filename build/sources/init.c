@@ -6,37 +6,37 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 07:12:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/28 21:57:34 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/31 20:26:44 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-t_cube	*init_cube_data(/*int argc, char **argv*/)
-{
-	t_cube	*cube;
+// t_cube	*init_cube_data(/*int argc, char **argv*/)
+// {
+// 	t_cube	*cube;
 
-	cube = (t_cube *)malloc(sizeof(t_cube));
-	if (!cube)
-		return (print_error_with_code("cub3D", ERR_CRITICAL, EXC_CRIT));
-	cube->mlx_ptr = NULL;
-	cube->win_height = NULL;
-	cube->win_width = 0;
-	cube->win_height = 0;
+// 	cube = (t_cube *)malloc(sizeof(t_cube));
+// 	if (!cube)
+// 		return (print_error_with_code("cub3D", ERR_CRITICAL, EXC_CRIT));
+// 	cube->mlx_ptr = NULL;
+// 	cube->win_height = NULL;
+// 	cube->win_width = 0;
+// 	cube->win_height = 0;
 
-	cube->screen.img_ptr = NULL;
-	cube->screen.addr = NULL;
-	cube->screen.bpp = 0;
-	cube->screen.line_len = 0;
-	cube->screen.endian = 0;
-	cube->screen.width = 0;
-	cube->screen.height = 0;
+// 	cube->screen.img_ptr = NULL;
+// 	cube->screen.addr = NULL;
+// 	cube->screen.bpp = 0;
+// 	cube->screen.line_len = 0;
+// 	cube->screen.endian = 0;
+// 	cube->screen.width = 0;
+// 	cube->screen.height = 0;
 
-	/* t_img textures[TEX_NB] ARE INITIALIZED */
+// 	/* t_img textures[TEX_NB] ARE INITIALIZED */
 
-	cube->floor_color = 0;
-	cube->ceil_color = 0;
-}
+// 	cube->floor_color = 0;
+// 	cube->ceil_color = 0;
+// }
 
 int	init_mlx_cube(t_cube *cube)
 {

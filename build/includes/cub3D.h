@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/28 20:36:31 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/10/31 20:25:12 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,23 @@ typedef struct s_map
 	char		**grid;    // rectangular map (same dims as width x height)
 }				t_map;
 
+// typedef struct s_keys
+// {
+// 	int			key_w;
+// 	int			key_s;
+// 	int			key_a;
+// 	int			key_d;
+// 	int			key_lar;
+// 	int			key_rar;
+
+// 	bool		w_pressed;
+// 	bool		s_pressed;
+// 	bool		a_pressed;
+// 	bool		d_pressed;
+// 	bool		lar_pressed;
+// 	bool		rar_pressed;
+// }				t_keys;
+
 typedef struct s_cube
 {
 	void		*mlx_ptr;
@@ -125,12 +142,12 @@ typedef struct s_cube
 	t_player	player;
 	t_map		map;
 
-	int			key_w;
-	int			key_s;
-	int			key_a;
-	int			key_d;
-	int			key_lar;
-	int			key_rar;
+	bool		key_w;
+	bool		key_s;
+	bool		key_a;
+	bool		key_d;
+	bool		key_lar;
+	bool		key_rar;
 
 	double		delta_time;
 }				t_cube;
