@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 03:24:42 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/01 08:14:28 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define EXC_PARS 2 // !!!
 
 // --- Internal Error Codes ---
-# define OKAY 0
+# define OKI 0
 # define CRITICAL 1
 # define SYNTAX 2
 
@@ -58,6 +58,8 @@
 
 // --- Messages ---
 # define ERR_CRITICAL "\e[1;31mcritical error\e[0m: memory failure.\n"
+
+# define MSG_EXIT "Exiting cub3D...\n"
 
 // --- Required By Game ---
 # define TILE_EMPTY 0
@@ -142,17 +144,28 @@ typedef struct s_cube
 
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
 
-// -------------------- general --------------------
-// init.c:
-t_cube			*init_cube_data();
-int				init_mlx_cube(t_cube *cube);
-
-
 // -------------------- parsing --------------------
-
 // ...
 
+
 // -------------------- engine --------------------
+
+// game_loop.c:
+int	game_loop(void *arg);
+
+// hooks.c:
+void	init_hooks(t_cube *cube);
+
+// -------------------- core --------------------
+
+// init.c:
+t_cube			*init_cube_data();
+int				init_cube_mlx(t_cube *cube);
+
+// cleanup.c:
+void	*free_cube(t_cube *cube);
+int	ft_cleanup(t_cube *cube);
+
 
 
 // testing: parsing.c + engine.c:

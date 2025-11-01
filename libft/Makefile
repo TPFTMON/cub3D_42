@@ -6,7 +6,7 @@
 #    By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/11 17:58:52 by abaryshe          #+#    #+#              #
-#    Updated: 2025/10/21 22:58:17 by abaryshe         ###   ########.fr        #
+#    Updated: 2025/11/01 07:46:22 by abaryshe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ MEM_FILES = ft_bzero.c ft_calloc.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
 STR_FILES = ft_split.c  ft_strchr.c ft_strcpy.c ft_strdup.c \
 			ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c \
 			ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
-			ft_strrchr.c ft_strtrim.c ft_substr.c ft_strcmp.c
+			ft_strrchr.c ft_strtrim.c ft_substr.c ft_strcmp.c \
+			str_trim_end_inplace.c
 
 CHAR_SRCS = $(addprefix ${CHAR_DIR}/, ${CHAR_FILES})
 CONV_SRCS = $(addprefix ${CONV_DIR}/, ${CONV_FILES})

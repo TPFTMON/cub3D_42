@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:00 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/21 22:44:56 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/01 07:45:41 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ char				*ft_strnstr(const char *big, const char *little, size_t n);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				*str_trim_end_inplace(char *str, const char *set);
 
 // character functions, char:
 int					ft_isalnum(int c);
