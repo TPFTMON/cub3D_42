@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 04:29:48 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 08:14:28 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/01 09:19:53 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	on_destroy(void *arg)
 
 	cube = (t_cube *)arg;
 
-	free_cube(cube);
+	ft_cleanup(cube);
 	printf(MSG_EXIT);
 	exit(EXC_OK);
 
 	return (OKI);
 }
 
-int	on_key_press(void *arg, int keycode)
+int	on_key_press(int keycode, void *arg)
 {
 	t_cube *cube;
 
@@ -48,13 +48,12 @@ int	on_key_press(void *arg, int keycode)
 		cube->key_w = 1;
 
 	// Print the keycode to find out what other keys are
-	// printf("Key pressed: %d\n", keycode);
 	printf("The key pressed: [%d]\n", keycode);
 
 	return (OKI);
 }
 
-int	on_key_release(void *arg, int keycode)
+int	on_key_release(int keycode, void *arg)
 {
 	t_cube *cube;
 

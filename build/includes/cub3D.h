@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 08:14:28 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/01 08:58:03 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@
 # define OKI 0
 # define CRITICAL 1
 # define SYNTAX 2
+
+// --- Window Dimensions ---
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
 
 // --- Keycodes ---
 # define KEY_ESC 65307
@@ -121,8 +125,8 @@ typedef struct s_cube
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			win_width;
-	int			win_height;
+	// int			win_width;
+	// int			win_height;
 
 	t_img		screen;
 	t_img		textures[TEX_NB]; // NO, SO, WE, EA
@@ -159,8 +163,8 @@ void	init_hooks(t_cube *cube);
 // -------------------- core --------------------
 
 // init.c:
-t_cube			*init_cube_data();
-int				init_cube_mlx(t_cube *cube);
+t_cube			*init_data_cube();
+int				init_mlx_cube(t_cube *cube);
 
 // cleanup.c:
 void	*free_cube(t_cube *cube);

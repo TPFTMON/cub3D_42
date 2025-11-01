@@ -6,26 +6,27 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 07:12:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 08:14:28 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/01 09:16:54 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-t_cube	*init_cube_data()
+t_cube	*init_data_cube()
 {
 	t_cube	*cube;
 
-	cube = (t_cube *)ft_calloc(1, sizeof(cube));
+	cube = (t_cube *)ft_calloc(1, sizeof(t_cube));
 	if (!cube)
 	{
 		print_error_with_code("cub3D", ERR_CRITICAL, CRITICAL);
 		return (NULL);
 	}
+
 	return (cube);
 }
 
-int	init_cube_mlx(t_cube *cube)
+int	init_mlx_cube(t_cube *cube)
 {
 	// if (!cube)
 	// 	return (print_error_with_code(NULL, "cube is NULL\n", CRITICAL));
@@ -34,27 +35,34 @@ int	init_cube_mlx(t_cube *cube)
 	if (!cube->mlx_ptr)
 		return (print_error_with_code("cub3D: mlx_init",
 				"Failed to initialize MiniLibX\n", CRITICAL));
-	cube->win_ptr = mlx_new_window(cube->mlx_ptr, cube->win_width,
-			cube->win_height, "cube");
+	printf("mlx_ptr: [%p]\n", cube->mlx_ptr);
+
+	cube->win_ptr = mlx_new_window(cube->mlx_ptr, WIN_WIDTH,
+			WIN_HEIGHT, "cube");
 	if (!cube->win_ptr)
 		return (print_error_with_code("cub3D: mlx_new_window",
 				"Failed to create window\n", CRITICAL));
-	cube->screen.img_ptr = mlx_new_image(cube->mlx_ptr, cube->win_width,
-			cube->win_height);
+	printf("win_ptr: [%p]\n", cube->win_ptr);
+
+	cube->screen.img_ptr = mlx_new_image(cube->mlx_ptr, WIN_WIDTH,
+			WIN_HEIGHT);
 	if (!cube->screen.img_ptr)
 		return (print_error_with_code("cub3D: mlx_new_image",
 				"Failed to create image buffer\n", CRITICAL));
+	printf("screen.img_ptr: [%p]\n", cube->screen.img_ptr);
+
 	cube->screen.addr = mlx_get_data_addr(cube->screen.img_ptr,
 			&cube->screen.bpp, &cube->screen.line_len, &cube->screen.endian);
 	if (!cube->screen.addr)
 		return (print_error_with_code("cub3D: mlx_get_data_addr",
 				"Failed to get image data address\n", CRITICAL));
+	printf("screen.addr: [%p]\n", cube->screen.addr);
 	return (OKI);
 }
 
 // static void	init_t_imgs(t_cube *cube);
 
-// t_cube	*init_cube_data(/*int argc, char **argv*/)
+// t_cube	*init_data_cube(/*int argc, char **argv*/)
 // {
 // 	t_cube	*cube;
 

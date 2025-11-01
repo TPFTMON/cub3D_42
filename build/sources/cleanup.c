@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 06:47:34 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 08:14:28 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/01 08:55:59 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_cleanup(t_cube *cube)
 {
 	if (!cube)
 		return (FAIL);
-	free_cube(cube);
 	if (cube->screen.img_ptr && cube->mlx_ptr)
 	{
 		mlx_destroy_image(cube->mlx_ptr, cube->screen.img_ptr);
@@ -44,5 +43,6 @@ int	ft_cleanup(t_cube *cube)
 		free(cube->mlx_ptr);
 		cube->mlx_ptr = NULL;
 	}
+	free_cube(cube);
 	return (OKI);
 }
