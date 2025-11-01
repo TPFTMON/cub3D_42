@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/31 21:03:11 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/01 03:24:42 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,17 @@
 # define CRITICAL 1
 # define SYNTAX 2
 
+// --- Keycodes ---
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_LAR 65361
+# define KEY_RAR 65363
+
 // --- Messages ---
 # define ERR_CRITICAL "\e[1;31mcritical error\e[0m: memory failure.\n"
-
-
-// // --- Some Colors ---
-// # define RESET "\e[0m"
-// # define BOLD "\e[1m"
-// # define GREEN "\e[32m"
-// # define YELLOW "\e[33m"
-// # define CYAN "\e[36m"
 
 // --- Required By Game ---
 # define TILE_EMPTY 0
@@ -122,7 +123,7 @@ typedef struct s_cube
 	int			win_height;
 
 	t_img		screen;
-	t_img		textures[TEX_NB]; // EA, WE, NO, SO
+	t_img		textures[TEX_NB]; // NO, SO, WE, EA
 	int			floor_color; // packed RGB
 	int			ceil_color;
 
@@ -143,6 +144,7 @@ typedef struct s_cube
 
 // -------------------- general --------------------
 // init.c:
+t_cube			*init_cube_data();
 int				init_mlx_cube(t_cube *cube);
 
 

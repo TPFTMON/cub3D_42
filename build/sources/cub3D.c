@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:57:17 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/31 20:26:29 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/01 03:28:54 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	// cube = init_cube_data(argv, argv);
+	cube = init_cube_data();
 	// PARSING IS HAPPENING HERE + INITIALIZATION
 	// +
 	// DATA FOR ENGINE WRITTEN TO STRUCT
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	printf("%s", miaou);
 	// THEN THE ENGINE DOES HIS GAME LOOP
 	// Here we init the window
-	init_mlx_cube(cube);
+	// init_mlx_cube(cube);
 	// Then the camera
 	return (0);
 }
