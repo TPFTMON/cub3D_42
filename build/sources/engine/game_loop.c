@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 04:29:11 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 07:59:04 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/02 07:33:02 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ int	game_loop(void *arg)
 	t_cube	*cube;
 
 	cube = (t_cube *)arg;
-	// 1. Update the logic (like: move player based on the keys pressed)
+	// 1. Update the logic (move player based on the keys pressed)
 	// update_player(cube);
+	//    player_movement:
+	//    1.1. Move the player with w,s,a,d keys
+	//    1.2. Rotate the point of view with lar,rar keys
 
-	// 2. Render all pixels (like: ceiling, floor, walls)
+	// 2. Render all pixels (ceiling, floor, walls)
 	// render_pixels(cube);
 
 	// 3. Put the ready image to the window

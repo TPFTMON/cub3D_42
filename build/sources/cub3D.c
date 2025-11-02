@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:57:17 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 09:00:49 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:37:11 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ int	main(int argc, char **argv)
 	parsing_report();
 	engine_report();
 
-	char	*miaou = "\e[1;32mմյաու մյաու մյաու մյաու մյաու\e[0m\n";
+	char	*miaou = "\e[1;35mմյաու մյաու մյաու մյաու մյաու\e[0m\n";
 	ft_strlen(miaou);
 	printf("%s", miaou);
 	// THEN THE ENGINE DOES HIS GAME LOOP
 	// Here we init the window
 	init_mlx_cube(cube);
-	// Then hooks
+	// Then hooks with the game_loop inside
 	init_hooks(cube);
+	
 	mlx_loop(cube->mlx_ptr);
 	ft_cleanup(cube);
 	return (OKI);

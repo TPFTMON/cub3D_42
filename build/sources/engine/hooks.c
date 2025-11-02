@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 04:29:48 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 09:19:53 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/02 06:33:12 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	on_key_press(int keycode, void *arg)
 	if (keycode == KEY_W)
 		cube->key_w = 1;
 	if (keycode == KEY_S)
-		cube->key_w = 1;
+		cube->key_s = 1;
 	if (keycode == KEY_A)
-		cube->key_w = 1;
+		cube->key_a = 1;
 	if (keycode == KEY_D)
-		cube->key_w = 1;
+		cube->key_d = 1;
 	if (keycode == KEY_LAR)
-		cube->key_w = 1;
+		cube->key_lar = 1;
 	if (keycode == KEY_RAR)
-		cube->key_w = 1;
+		cube->key_rar = 1;
 
 	// Print the keycode to find out what other keys are
 	printf("The key pressed: [%d]\n", keycode);
@@ -61,16 +61,17 @@ int	on_key_release(int keycode, void *arg)
 	if (keycode == KEY_W)
 		cube->key_w = 0;
 	if (keycode == KEY_S)
-		cube->key_w = 0;
+		cube->key_s = 0;
 	if (keycode == KEY_A)
-		cube->key_w = 0;
+		cube->key_a = 0;
 	if (keycode == KEY_D)
-		cube->key_w = 0;
+		cube->key_d = 0;
 	if (keycode == KEY_LAR)
-		cube->key_w = 0;
+		cube->key_lar = 0;
 	if (keycode == KEY_RAR)
-		cube->key_w = 0;
+		cube->key_rar = 0;
 
+	printf("The key RELEASED: [%d]\n", keycode);
 	return (OKI);
 }
 

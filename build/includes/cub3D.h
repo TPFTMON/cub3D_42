@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 08:58:03 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:25:29 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@
 # define STDERR_FD 2
 
 // --- Exit Codes ---
-# define EXC_OK 0   // We MAY want to add our own different codes. MAYBE for parsing.
-# define EXC_CRIT 1 // !!!
-# define EXC_PARS 2 // !!!
+# define EXC_OK 0
+# define EXC_CRIT 1
+# define EXC_PARS 2
 
 // --- Internal Error Codes ---
 # define OKI 0
@@ -63,7 +63,7 @@
 // --- Messages ---
 # define ERR_CRITICAL "\e[1;31mcritical error\e[0m: memory failure.\n"
 
-# define MSG_EXIT "Exiting cub3D...\n"
+# define MSG_EXIT "\e[1;32mExiting cub3D... Մյաու!\e[0m\n"
 
 // --- Required By Game ---
 # define TILE_EMPTY 0
@@ -106,19 +106,25 @@ typedef struct s_player
 
 	double		move_speed;
 	double		rot_speed;
-
-	t_tex		direction;
 }				t_player;
 
+/**
+ * This is the main struct for the parser to populate
+ */
 typedef struct s_map
 {
 	char		**raw;     // array of strings from parser (keep for error messages)
 
 	int			width;      // max row length
 	int			height;     // number of rows
-	char		**grid;    // rectangular map (same dims as width x height)
+
+	int			color_floor; // packed RGB
+	int			color_ceil;
 
 	char		*texture_paths[TEX_NB];
+	t_tex		player_direction;
+
+	char		**grid;    // rectangular map (same dims as width x height)
 }				t_map;
 
 typedef struct s_cube
@@ -130,8 +136,6 @@ typedef struct s_cube
 
 	t_img		screen;
 	t_img		textures[TEX_NB]; // NO, SO, WE, EA
-	int			floor_color; // packed RGB
-	int			ceil_color;
 
 	t_player	player;
 	t_map		map;
