@@ -6,20 +6,20 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:49:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/10/21 21:22:29 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:38:50 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	skip_space(const char *str, int i)
+static int	skip_space(const char *str, int i)
 {
 	while (str[i] == ' ')
 		i++;
 	return (i);
 }
 
-int	parse_sign(const char *str, int *i)
+static int	parse_sign(const char *str, int *i)
 {
 	int	sign;
 
@@ -33,7 +33,7 @@ int	parse_sign(const char *str, int *i)
 	return (sign);
 }
 
-int	accumulate_value(const char *str, int *i, long *out, int sign)
+static int	accumulate_value(const char *str, int *i, long *out, int sign)
 {
 	int	digit;
 

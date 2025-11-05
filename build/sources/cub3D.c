@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:57:17 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/02 08:37:11 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:29:48 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	init_mlx_cube(cube);
 	// Then hooks with the game_loop inside
 	init_hooks(cube);
-	
+
 	mlx_loop(cube->mlx_ptr);
 	ft_cleanup(cube);
 	return (OKI);

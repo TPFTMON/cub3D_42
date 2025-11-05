@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/02 08:25:29 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:57:17 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ typedef struct s_player
 	double		pos_y;             // position in map coords (float)
 
 	double		dir_x;
-	double		dir_y;       // direction vector (normalized)
+	double		dir_y;         // direction vector (normalized)
 
 	double		plane_x;
-	double		plane_y; // camera plane (perp to dir)
+	double		plane_y;   // camera plane (perp to dir)
 
 	double		move_speed;
 	double		rot_speed;
@@ -131,8 +131,6 @@ typedef struct s_cube
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	// int			win_width;
-	// int			win_height;
 
 	t_img		screen;
 	t_img		textures[TEX_NB]; // NO, SO, WE, EA
@@ -147,6 +145,7 @@ typedef struct s_cube
 	bool		key_lar;
 	bool		key_rar;
 
+	long long	last_frame_time;
 	double		delta_time;
 }				t_cube;
 

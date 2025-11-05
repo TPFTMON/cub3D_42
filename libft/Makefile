@@ -6,7 +6,7 @@
 #    By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/11 17:58:52 by abaryshe          #+#    #+#              #
-#    Updated: 2025/11/01 07:46:22 by abaryshe         ###   ########.fr        #
+#    Updated: 2025/11/05 15:39:36 by abaryshe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ FREM = rm -f
 CHAR_FILES = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			ft_isprint.c ft_isspace.c ft_tolower.c ft_toupper.c
 # conversion directory:
-CONV_FILES = ft_atoi.c ft_itoa.c ft_mystrtol.c
+CONV_FILES = ft_atoi.c ft_itoa.c ft_mystrtol.c get_time_in_ms.c
 # error error directory:
 ERROR_FILES = print_error.c print_error_with_code.c ft_dprintf.c
 # file fd directory:

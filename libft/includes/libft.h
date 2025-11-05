@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:00 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 07:45:41 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:39:09 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/time.h>
 # include <term.h>
 # include <termios.h>
 # include <unistd.h>
@@ -47,6 +48,9 @@
 # define STDIN_FD 0
 # define STDOUT_FD 1
 # define STDERR_FD 2
+
+// --- Messages ---
+# define ERR_GETTIMEOFDAY "\e[1;31msomething went wrong\e[0m"
 
 // <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
 
@@ -68,6 +72,8 @@ char				*ft_free_rest_gnl(char **rest);
 // conversion functions, conversion:
 int					ft_atoi(const char *str);
 char				*ft_itoa(int n);
+int					ft_mystrtol(const char *str, long *out);
+long long			get_time_in_ms(void);
 
 // string functions, str:
 char				**ft_split(char const *s, char c);
