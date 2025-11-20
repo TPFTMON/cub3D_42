@@ -15,25 +15,25 @@
 int	game_loop(void *arg)
 {
 	t_cube		*cube;
-	long long	current_time;
-	double		effective_move_speed;
-	double		effective_rot_speed;
+	// long long	current_time;
+	// double		effective_move_speed;
+	// double		effective_rot_speed;
 
 	cube = (t_cube *)arg;
 
-	// 1. Relative movement updates
-	//    1.1. Update the last_frame_time for smooth movement
-	//    1.2. Calculate delta_time
-	//    1.3. Also set effective move/rot speed from it
-	if (cube->last_frame_time == 0)
-		cube->last_frame_time = get_time_in_ms();
-	current_time = get_time_in_ms();
+	// // 1. Relative movement updates
+	// //    1.1. Update the last_frame_time for smooth movement
+	// //    1.2. Calculate delta_time
+	// //    1.3. Also set effective move/rot speed from it
+	// if (cube->last_frame_time == 0)
+	// 	cube->last_frame_time = get_time_in_ms();
+	// current_time = get_time_in_ms();
 
-	// setting delta_time and converting to seconds instead of ms:
-	cube->delta_time = ((current_time - cube->last_frame_time) / 1000);
+	// // setting delta_time and converting to seconds instead of ms:
+	// cube->delta_time = ((current_time - cube->last_frame_time) / 1000);
 
-	effective_move_speed = cube->player.move_speed * cube->delta_time;
-	effective_rot_speed = cube->player.rot_speed * cube->delta_time;
+	// effective_move_speed = cube->player.move_speed * cube->delta_time;
+	// effective_rot_speed = cube->player.rot_speed * cube->delta_time;
 
 	// 2. Update the logic (move player based on the keys pressed)
 	// update_player(cube);

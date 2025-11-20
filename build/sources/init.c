@@ -31,6 +31,7 @@ int	init_mlx_cube(t_cube *cube)
 	// if (!cube)
 	// 	return (print_error_with_code(NULL, "cube is NULL\n", CRITICAL));
 
+	printf("Entered init_mlx_cude:\n");
 	cube->mlx_ptr = mlx_init();
 	if (!cube->mlx_ptr)
 		return (print_error_with_code("cub3D: mlx_init",
