@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 04:29:48 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/02 06:33:12 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:49:58 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	on_key_press(int keycode, void *arg)
 	if (keycode == KEY_RAR)
 		cube->key_rar = 1;
 
-	// Print the keycode to find out what other keys are
+	// Print the keycode to find what other keys are
 	printf("The key pressed: [%d]\n", keycode);
 
 	return (OKI);

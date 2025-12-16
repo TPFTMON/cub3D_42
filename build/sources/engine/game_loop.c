@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 04:29:11 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/05 16:06:32 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:17:00 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	game_loop(void *arg)
 	//    2.2. Rotate the point of view with lar,rar keys
 
 	// 3. Render all pixels (ceiling, floor, walls)
-	// render_pixels(cube);
+	render_pixels(cube);
 
 	// 4. Put the ready image to the window
 	mlx_put_image_to_window(cube->mlx_ptr, cube->win_ptr, cube->screen.img_ptr, 0, 0);

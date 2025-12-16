@@ -6,7 +6,7 @@
 #    By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 13:52:33 by abaryshe          #+#    #+#              #
-#    Updated: 2025/11/01 08:09:41 by abaryshe         ###   ########.fr        #
+#    Updated: 2025/12/16 15:13:48 by abaryshe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LIBS_WITH_FLAGS = ${LIBFT} ${MLX} -lXext -lX11 -lm
 # || || || || || ||
 # \/ \/ \/ \/ \/ \/
 PARS_FILES = parsing.c
-ENGINE_FILES = engine.c hooks.c game_loop.c
+ENGINE_FILES = engine.c hooks.c game_loop.c render.c draw.c
 CORE_FILES = cub3D.c init.c cleanup.c
 
 PARS_SRCS = $(addprefix ${PARS_DIR}/, ${PARS_FILES})

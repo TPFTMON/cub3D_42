@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/05 15:57:17 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:04:46 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@
 
 # define MSG_EXIT "\e[1;32mExiting cub3D... Մյաու!\e[0m\n"
 
-// --- Required By Game ---
-# define TILE_EMPTY 0
-# define TILE_WALL 1
-# define TILE_OUT  -1
+// // --- Required By Game ---
+// # define TILE_EMPTY 0
+// # define TILE_WALL 1
+// # define TILE_OUT  -1
 
 // <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
 
@@ -113,10 +113,10 @@ typedef struct s_player
  */
 typedef struct s_map
 {
-	char		**raw;     // array of strings from parser (keep for error messages)
+	char		**raw;       // array of strings from parser (keep for error messages)
 
-	int			width;      // max row length
-	int			height;     // number of rows
+	int			width;       // max row length
+	int			height;      // number of rows
 
 	int			color_floor; // packed RGB
 	int			color_ceil;
@@ -124,7 +124,7 @@ typedef struct s_map
 	char		*texture_paths[TEX_NB];
 	t_tex		player_direction;
 
-	char		**grid;    // rectangular map (same dims as width x height)
+	char		**grid;      // rectangular map (same dims as width x height)
 }				t_map;
 
 typedef struct s_cube
@@ -173,9 +173,15 @@ int				init_mlx_cube(t_cube *cube);
 void	*free_cube(t_cube *cube);
 int	ft_cleanup(t_cube *cube);
 
+// draw.c:
+void    my_pixel_put(struct s_img *img, int x, int y, int color);
+void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
 
 
-// testing: parsing.c + engine.c:
+// render.c:
+void    render_pixels(t_cube *cube);
+
+    // testing: parsing.c + engine.c:
 void			parsing_report(void);
 void			engine_report(void);
 
