@@ -25,9 +25,9 @@ void    my_pixel_put(t_img *img, int x, int y, int color){
 void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col){
     int x, y;
 
-    x = 0;
     y = 0;
     while (y < WIN_HEIGHT / 2){
+        x = 0;
         while (x < WIN_WIDTH){
             my_pixel_put(img, x, y, ceil_col);
             x++;
@@ -35,9 +35,9 @@ void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col){
         y++;
     }
 
-    x = 0;
     y = WIN_HEIGHT / 2;
     while (y < WIN_HEIGHT){
+    x = 0;
         while (x < WIN_WIDTH){
             my_pixel_put(img, x, y, floor_col);
             x++;
