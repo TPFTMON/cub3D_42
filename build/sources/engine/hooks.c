@@ -82,7 +82,7 @@ void	init_hooks(t_cube *cube)
 	 * 17 = DestroyNotify (the red cross event)
 	 * 0 = NoEventMask (this is special for DestroyNotify)
 	 * on_destroy = on destroy event function
-	 * cube = the (void *) param to pass to your function
+	 * cube = the (void *) param to pass to function
 	 */
 	mlx_hook(cube->win_ptr, 17, 0, on_destroy, cube);
 
@@ -91,7 +91,7 @@ void	init_hooks(t_cube *cube)
 	 * 2 = KeyPress event
 	 * (1L<<0) = KeyPressMask
 	 * on_key_press = on press event function
-	 * cube = your param
+	 * cube = param
 	 */
 	mlx_hook(cube->win_ptr, 2, (1L<<0), on_key_press, cube);
 
@@ -100,7 +100,7 @@ void	init_hooks(t_cube *cube)
 	 * 3 = KeyRelease event
 	 * (1L<<1) = KeyReleaseMask
 	 * on_key_release = on release event funtion
-	 * cube = your param
+	 * cube = param
 	 */
 	mlx_hook(cube->win_ptr, 3, (1L<<1), on_key_release, cube);
 

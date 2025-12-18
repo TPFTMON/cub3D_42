@@ -39,6 +39,7 @@ int	main(int argc, char **argv)
 	init_hooks(cube);
 
 	mlx_loop(cube->mlx_ptr);
+
 	ft_cleanup(cube);
 	return (OKI);
 }

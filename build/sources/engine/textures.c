@@ -10,3 +10,4 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// The textures' math to be displayed will be caculated here
