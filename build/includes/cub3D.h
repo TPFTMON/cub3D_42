@@ -149,6 +149,27 @@ typedef struct s_cube
 	double		delta_time;
 }				t_cube;
 
+// <<< engine structs >>>
+typedef struct s_ray
+{
+    double      camera_x;
+    double      dir_x;
+    double      dir_y;
+    int         map_x;
+    int         map_y;
+    int         step_x;
+    int         step_y;
+    double      side_dist_x;
+    double      side_dist_y;
+    double      delta_dist_x;
+    double      delta_dist_y;
+    double      perp_wall_dist;
+    int         side;           // 0 for NS, 1 for EW
+    int         line_height;
+    int         draw_start;
+    int         draw_end;
+}               t_ray;
+
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
 
 // -------------------- parsing --------------------
@@ -163,6 +184,16 @@ int	game_loop(void *arg);
 // hooks.c:
 void	init_hooks(t_cube *cube);
 
+// raycaster.c:
+void    perform_raycasting(t_cube *cube);
+
+// draw.c:
+void    my_pixel_put(struct s_img *img, int x, int y, int color);
+void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
+
+// render.c:
+// void    render_pixels(t_cube *cube);
+
 // -------------------- core --------------------
 
 // init.c:
@@ -172,14 +203,6 @@ int				init_mlx_cube(t_cube *cube);
 // cleanup.c:
 void	*free_cube(t_cube *cube);
 int	ft_cleanup(t_cube *cube);
-
-// draw.c:
-void    my_pixel_put(struct s_img *img, int x, int y, int color);
-void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
-
-
-// render.c:
-// void    render_pixels(t_cube *cube);
 
     // testing: parsing.c + engine.c:
 void			parsing_report(void);
