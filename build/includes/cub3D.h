@@ -179,7 +179,7 @@ void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
 
 
 // render.c:
-void    render_pixels(t_cube *cube);
+// void    render_pixels(t_cube *cube);
 
     // testing: parsing.c + engine.c:
 void			parsing_report(void);

@@ -12,9 +12,7 @@
 
 #include "cub3D.h"
 
-void    render_pixels(t_cube *cube){
+// void    render_pixels(t_cube *cube){
 
-    draw_ceiling_floor(&cube->screen, cube->map.color_ceil, cube->map.color_floor);
-
-    // ...
-}
+//     // ...
+// }
