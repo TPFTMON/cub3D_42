@@ -12,10 +12,12 @@
 
 #include "cub3D.h"
 
-static void	move_player_forward(t_cube *cube);
-static void	move_player_backward(t_cube *cube);
-static void	move_player_left(t_cube *cube);
-static void	move_player_right(t_cube *cube);
+void	move_player_forward(t_cube *cube);
+void	move_player_backward(t_cube *cube);
+void	move_player_left(t_cube *cube);
+void	move_player_right(t_cube *cube);
+void    shift_view_left(t_cube *cube);
+void    shift_view_right(t_cube *cube);
 
 void	update_player(t_cube *cube)
 {
@@ -27,25 +29,24 @@ void	update_player(t_cube *cube)
 		move_player_left(cube);
 	if (cube->key_d)
 		move_player_right(cube);
+    if (cube->key_lar)
+        shift_view_left(cube);
+    if (cube->key_rar)
+        shift_view_right(cube);
 }
 
-void	move_player_forward(t_cube *cube)
-{
-
-}
-
-void	move_player_backward(t_cube *cube)
-{
-
-}
-
-void	move_player_left(t_cube *cube)
-{
+void	move_player_forward(t_cube *cube){
 
 }
 
-void	move_player_right(t_cube *cube)
-{
+void	move_player_backward(t_cube *cube){
 
 }
 
+void	move_player_left(t_cube *cube){
+
+}
+
+void	move_player_right(t_cube *cube){
+
+}

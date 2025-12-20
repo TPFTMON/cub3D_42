@@ -13,6 +13,7 @@
 #include "cub3D.h"
 
 void    test_set_ceil_floor(t_cube *cube);
+void    test_set_map_and_player(t_cube *cube);
 
 int	main(int argc, char **argv)
 {
@@ -24,15 +25,18 @@ int	main(int argc, char **argv)
 	// PARSING IS HAPPENING HERE
 	// +
 	// DATA FOR ENGINE WRITTEN TO STRUCT
+    init_player(cube);
     test_set_ceil_floor(cube);
+    // test for player and map
+    // test_set_map_and_player(cube);
 
 	parsing_report();
 	engine_report();
 
-	char	*miaou = "\e[1;35mմյաու մյաու մյաու մյաու մյաու\e[0m\n";
+	char	*miaou = "\e[1;35Miaou miaou miaou miaou miaou\e[0m\n";
 	ft_strlen(miaou);
 	printf("%s", miaou);
-	// THEN THE ENGINE DOES HIS GAME LOOP
+	// THEN THE ENGINE DOES HIS GAME_LOOP
 	// Here we init the window
 	init_mlx_cube(cube);
 	// Then hooks with the game_loop inside
@@ -57,4 +61,8 @@ void    test_set_ceil_floor(t_cube *cube){
     G_f = 155;   // 41  |
     B_f = 0;   // 240 |
     cube->map.color_floor = ((R_f << 16) | (G_f << 8) | B_f);
+}
+
+void    test_set_map_and_player(t_cube *cube){
+
 }

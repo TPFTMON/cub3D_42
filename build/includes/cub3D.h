@@ -63,7 +63,7 @@
 // --- Messages ---
 # define ERR_CRITICAL "\e[1;31mcritical error\e[0m: memory failure.\n"
 
-# define MSG_EXIT "\e[1;32mExiting cub3D... Մյաու!\e[0m\n"
+# define MSG_EXIT "\e[1;32mExiting cub3D... Bye!\e[0m\n"
 
 // // --- Required By Game ---
 // # define TILE_EMPTY 0
@@ -199,6 +199,7 @@ void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
 // init.c:
 t_cube			*init_data_cube();
 int				init_mlx_cube(t_cube *cube);
+void    init_player(t_cube *cube);
 
 // cleanup.c:
 void	*free_cube(t_cube *cube);

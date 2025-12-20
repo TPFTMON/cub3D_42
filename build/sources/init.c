@@ -61,6 +61,37 @@ int	init_mlx_cube(t_cube *cube)
 	return (OKI);
 }
 
+void    init_player(t_cube *cube){
+    if (cube->map.player_direction == NO)
+    {
+        cube->player.dir_x = 0;
+        cube->player.dir_y = -1;
+        cube->player.plane_x = 0.66; // Perpendicular to (0, -1) is (1, 0)
+        cube->player.plane_y = 0;
+    }
+    else if (cube->map.player_direction == SO)
+    {
+        cube->player.dir_x = 0;
+        cube->player.dir_y = 1;
+        cube->player.plane_x = -0.66;
+        cube->player.plane_y = 0;
+    }
+    else if (cube->map.player_direction == EA)
+    {
+        cube->player.dir_x = 1;
+        cube->player.dir_y = 0;
+        cube->player.plane_x = 0;
+        cube->player.plane_y = 0.66;
+    }
+    else if (cube->map.player_direction == WE)
+    {
+        cube->player.dir_x = -1;
+        cube->player.dir_y = 0;
+        cube->player.plane_x = 0;
+        cube->player.plane_y = -0.66;
+    }
+}
+
 // static void	init_t_imgs(t_cube *cube);
 
 // t_cube	*init_data_cube(/*int argc, char **argv*/)
