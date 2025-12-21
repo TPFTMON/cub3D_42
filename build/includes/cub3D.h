@@ -180,6 +180,7 @@ typedef struct s_ray
 
 // game_loop.c:
 int	game_loop(void *arg);
+void	update_player(t_cube *cube);
 
 // hooks.c:
 void	init_hooks(t_cube *cube);
@@ -192,7 +193,12 @@ void    my_pixel_put(struct s_img *img, int x, int y, int color);
 void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
 
 // player_move.c:
-void	update_player(t_cube *cube);
+void	move_player_forward(t_cube *cube);
+
+// player_view.c:
+void    shift_view_left(t_cube *cube);
+void    shift_view_right(t_cube *cube);
+
 
 // render.c:
 // void    render_pixels(t_cube *cube);

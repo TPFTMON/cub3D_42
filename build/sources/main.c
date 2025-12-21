@@ -75,7 +75,7 @@ void    test_set_player(t_cube *cube){
     // cube->player.pos_x = (double)cube->map.width / 2.0 + 0.5;
     // cube->player.pos_y = (double)cube->map.height / 2.0 + 0.5;
 
-    cube->player.pos_x = 7.5;
+    cube->player.pos_x = 6.5;
     cube->player.pos_y = 7.5;
 
 

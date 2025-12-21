@@ -47,7 +47,6 @@ int	on_key_press(int keycode, void *arg)
 	if (keycode == KEY_RAR)
 		cube->key_rar = 1;
 
-	// Print the keycode to find what other keys are
 	printf("The key pressed: [%d]\n", keycode);
 
 	return (OKI);
