@@ -14,7 +14,7 @@
 
 void    init_ray(t_ray *ray, int x, t_cube *cube);
 void    find_wall_dda(t_ray *ray, t_cube *cube);
-void    calculate_wall_height(t_ray *ray, t_cube *cube);
+void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/);
 // void    render_wall_strip(t_ray *ray, int x, t_cube *cube);
 void    render_test_flat_color(t_ray *ray, int x, t_cube *cube);
 
@@ -29,10 +29,10 @@ void perform_raycasting(t_cube *cube){
 
         find_wall_dda(&ray, cube);
 
-        calculate_wall_height(&ray, cube);
+        calculate_wall_height(&ray/*, cube*/);
 
         // render_wall_strip(&ray, x, cube);
-        render_test_flat_color(&ray, x, cube);
+        // render_test_flat_color(&ray, x, cube);
 
         x++;
     }
@@ -69,6 +69,8 @@ void    init_ray(t_ray *ray, int x, t_cube *cube){
 
 // Purpose: Loop until wall is hit
 void    find_wall_dda(t_ray *ray, t_cube *cube){
+    (void)cube;
+
     int hit = 0;
     while (hit == 0)
     {
@@ -84,13 +86,13 @@ void    find_wall_dda(t_ray *ray, t_cube *cube){
             ray->map_y += ray->step_y;
             ray->side = 1;
         }
-        if (cube->map.grid[ray->map_y][ray->map_x] == '1')
+        // if (cube->map.grid[ray->map_y][ray->map_x] == '1')
             hit = 1;
     }
 }
 
 // Purpose: Calculate wall height :)
-void    calculate_wall_height(t_ray *ray, t_cube *cube){
+void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/){
     // ray->perp_wall_dist = (ray->map_x - cube->player.pos_x + (1 - ray->step_x) / 2) / ray->dir_x; // More safe approach
 
     if (ray->side == 0)
@@ -135,7 +137,7 @@ void    render_test_flat_color(t_ray *ray, int x, t_cube *cube)
     int y = ray->draw_start;
     while (y <= ray->draw_end)
     {
-        my_mlx_pixel_put(&cube->screen, x, y, color);
+        my_pixel_put(&cube->screen, x, y, color);
         y++;
     }
 }

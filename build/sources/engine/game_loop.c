@@ -27,7 +27,7 @@ int	game_loop(void *arg){
 	mlx_put_image_to_window(cube->mlx_ptr, cube->win_ptr, cube->screen.img_ptr, 0, 0);
 
     // 3. Update the logic (move player based on relative time and the keys pressed)
-	update_player(cube);
+	// update_player(cube);
 
 	return (0);
 }

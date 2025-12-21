@@ -13,7 +13,8 @@
 #include "cub3D.h"
 
 void    test_set_ceil_floor(t_cube *cube);
-void    test_set_map_and_player(t_cube *cube);
+void    test_set_player(t_cube *cube);
+void	test_fill_grid(t_map *map, int width, int height);
 
 int	main(int argc, char **argv)
 {
@@ -25,15 +26,16 @@ int	main(int argc, char **argv)
 	// PARSING IS HAPPENING HERE
 	// +
 	// DATA FOR ENGINE WRITTEN TO STRUCT
-    init_player(cube);
     test_set_ceil_floor(cube);
     // test for player and map
-    // test_set_map_and_player(cube);
+    test_set_player(cube);
+    test_fill_grid(&cube->map, 15, 15);
+    init_player(cube);
 
 	parsing_report();
 	engine_report();
 
-	char	*miaou = "\e[1;35Miaou miaou miaou miaou miaou\e[0m\n";
+	char	*miaou = "\e[1;35mMiaou miaou miaou miaou miaou\e[0m\n";
 	ft_strlen(miaou);
 	printf("%s", miaou);
 	// THEN THE ENGINE DOES HIS GAME_LOOP
@@ -63,6 +65,43 @@ void    test_set_ceil_floor(t_cube *cube){
     cube->map.color_floor = ((R_f << 16) | (G_f << 8) | B_f);
 }
 
-void    test_set_map_and_player(t_cube *cube){
+void    test_set_player(t_cube *cube){
+    cube->map.player_direction = NO;
+}
 
+void	test_fill_grid(t_map *map, int width, int height)
+{
+    int	i;
+    int	j;
+    if (width < 3 || height < 3)
+        return ;
+    map->width = width;
+    map->height = height;
+    map->grid = (char **)malloc(sizeof(char *) * height);
+    if (!map->grid){
+        perror("malloc");
+        exit(EXC_CRIT);
+    }
+    i = 0;
+    while (i < height){
+        map->grid[i] = (char *)malloc(width + 1);
+        if (!map->grid[i]){
+            while (--i >= 0)
+                free(map->grid[i]);
+            free(map->grid);
+            perror("malloc");
+            exit(EXC_CRIT);
+        }
+        j = 0;
+        while (j < width){
+            if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
+                map->grid[i][j] = '1';
+            else
+                map->grid[i][j] = '0';
+            j++;
+        }
+        map->grid[i][width] = '\0';
+        i++;
+    }
+    map->grid[height / 2][width / 2] = '1'; // single center wall
 }
