@@ -52,7 +52,7 @@ STR_FILES = ft_split.c  ft_strchr.c ft_strcpy.c ft_strdup.c \
 			ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c \
 			ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
 			ft_strrchr.c ft_strtrim.c ft_substr.c ft_strcmp.c \
-			str_trim_end_inplace.c
+			str_trim_end_inplace.c free_string_array.c
 
 CHAR_SRCS = $(addprefix ${CHAR_DIR}/, ${CHAR_FILES})
 CONV_SRCS = $(addprefix ${CONV_DIR}/, ${CONV_FILES})

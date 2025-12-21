@@ -191,6 +191,9 @@ void    perform_raycasting(t_cube *cube);
 void    my_pixel_put(struct s_img *img, int x, int y, int color);
 void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
 
+// player_move.c:
+void	update_player(t_cube *cube);
+
 // render.c:
 // void    render_pixels(t_cube *cube);
 

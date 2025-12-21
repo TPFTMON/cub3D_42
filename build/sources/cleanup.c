@@ -15,6 +15,7 @@
 void	*free_cube(t_cube *cube)
 {
 	// free all the stuff that needs to be freed. Like map or something
+    free_string_array(cube->map.grid);
 	if (cube)
 		free(cube);
 	return (NULL);
@@ -46,3 +47,26 @@ int	ft_cleanup(t_cube *cube)
 	free_cube(cube);
 	return (OKI);
 }
+
+// void	*free_cube(t_cube *cube)
+// {
+	// free all the stuff that needs to be freed. Like map or something
+    // free_string_array(cube->map.grid);
+    // int	i;
+//
+	// if (!cube->map.grid)
+		// return (NULL);
+	// i = 0;
+	// while (cube->map.grid[i])
+		// i++;
+	// while (i >= 0)
+	// {
+		// free(cube->map.grid[i]);
+		// cube->map.grid[i] = NULL;
+		// i--;
+	// }
+	// free(cube->map.grid);
+	// if (cube)
+		// free(cube);
+	// return (NULL);
+// }

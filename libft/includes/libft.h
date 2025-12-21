@@ -28,9 +28,9 @@
 # include <string.h>
 # include <sys/ioctl.h>
 # include <sys/stat.h>
+# include <sys/time.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <sys/time.h>
 # include <term.h>
 # include <termios.h>
 # include <unistd.h>
@@ -93,6 +93,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*str_trim_end_inplace(char *str, const char *set);
+void				*free_string_array(char **str_array);
 
 // character functions, char:
 int					ft_isalnum(int c);

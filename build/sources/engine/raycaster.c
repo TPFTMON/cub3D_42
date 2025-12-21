@@ -18,7 +18,8 @@ void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/);
 // void    render_wall_strip(t_ray *ray, int x, t_cube *cube);
 void    render_test_flat_color(t_ray *ray, int x, t_cube *cube);
 
-void perform_raycasting(t_cube *cube){
+void perform_raycasting(t_cube *cube)
+{
     int x;
     t_ray ray;
 
@@ -32,14 +33,15 @@ void perform_raycasting(t_cube *cube){
         calculate_wall_height(&ray/*, cube*/);
 
         // render_wall_strip(&ray, x, cube);
-        // render_test_flat_color(&ray, x, cube);
+        render_test_flat_color(&ray, x, cube);
 
         x++;
     }
 }
 
 // Purpose: Calculate dir, delta_dist, step, and initial side_dist
-void    init_ray(t_ray *ray, int x, t_cube *cube){
+void    init_ray(t_ray *ray, int x, t_cube *cube)
+{
     ray->map_x = cube->player.pos_x;
     ray->map_y = cube->player.pos_y;
 
@@ -68,10 +70,11 @@ void    init_ray(t_ray *ray, int x, t_cube *cube){
 }
 
 // Purpose: Loop until wall is hit
-void    find_wall_dda(t_ray *ray, t_cube *cube){
-    (void)cube;
+void    find_wall_dda(t_ray *ray, t_cube *cube)
+{
+    int hit;
 
-    int hit = 0;
+    hit = 0;
     while (hit == 0)
     {
         if (ray->side_dist_x < ray->side_dist_y)
@@ -86,7 +89,9 @@ void    find_wall_dda(t_ray *ray, t_cube *cube){
             ray->map_y += ray->step_y;
             ray->side = 1;
         }
-        // if (cube->map.grid[ray->map_y][ray->map_x] == '1')
+        if (cube->map.grid[ray->map_y][ray->map_x] == '1' /*||
+            ray->map_x < 0 || ray->map_x >= cube->map.width
+            || ray->map_y < 0 || ray->map_y >= cube->map.height*/)
             hit = 1;
     }
 }
@@ -128,9 +133,9 @@ void    render_test_flat_color(t_ray *ray, int x, t_cube *cube)
     else // Hit a horizontal grid line
     {
         if (ray->dir_y > 0)
-            color = 0x0000FF; // Blue (South-facing wall)
+            color = 0xFFFF00; // Yellow (South-facing wall)
         else
-            color = 0xFFFF00; // Yellow (North-facing wall)
+            color = 0x0000FF; // Blue (North-facing wall)
     }
 
     // Draw the vertical line
