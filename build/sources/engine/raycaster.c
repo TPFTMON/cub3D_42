@@ -89,15 +89,16 @@ void    find_wall_dda(t_ray *ray, t_cube *cube)
             ray->map_y += ray->step_y;
             ray->side = 1;
         }
-        if (cube->map.grid[ray->map_y][ray->map_x] == '1' /*||
+        if (cube->map.grid[ray->map_y][ray->map_x] == '1' ||
             ray->map_x < 0 || ray->map_x >= cube->map.width
-            || ray->map_y < 0 || ray->map_y >= cube->map.height*/)
+            || ray->map_y < 0 || ray->map_y >= cube->map.height)
             hit = 1;
     }
 }
 
 // Purpose: Calculate wall height :)
-void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/){
+void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/)
+{
     // ray->perp_wall_dist = (ray->map_x - cube->player.pos_x + (1 - ray->step_x) / 2) / ray->dir_x; // More safe approach
 
     if (ray->side == 0)
@@ -108,14 +109,12 @@ void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/){
     ray->line_height = (int)WIN_HEIGHT / ray->perp_wall_dist;
 
     ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
-    if (ray->draw_start < 0){
+    if (ray->draw_start < 0)
         ray->draw_start = 0;
-    }
 
     ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
-    if (ray->draw_end > WIN_HEIGHT){
+    if (ray->draw_end > WIN_HEIGHT)
         ray->draw_end = WIN_HEIGHT - 1;
-    }
 }
 
 void    render_test_flat_color(t_ray *ray, int x, t_cube *cube)
@@ -150,20 +149,3 @@ void    render_test_flat_color(t_ray *ray, int x, t_cube *cube)
 // Purpose: Calculate exactly what pixel of the texture to paint and paint it
 // (For now I want it to just paint different sides of the walls in different colors)
 // void    render_wall_strip(t_ray *ray, int x, t_cube *cube){
-
-// }
-
-// void perform_raycasting(t_cube *cube){
-
-    // In the loop for columns x from 0 to WIN_WIDTH:
-
-    //    1. Calculate ray vectors
-
-    //    2. Run the DDA (to find the wall)
-
-    //    3. Calculate distance (perpendicular) and wall height
-
-    //    4. Texture math
-
-    //    5. Draw the vertical line
-// }

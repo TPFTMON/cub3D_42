@@ -43,7 +43,7 @@ LIBS_WITH_FLAGS = ${LIBFT} ${MLX} -lXext -lX11 -lm
 # \/ \/ \/ \/ \/ \/
 PARS_FILES = parsing.c
 ENGINE_FILES = engine.c hooks.c game_loop.c draw.c raycaster.c player_move.c player_view.c
-CORE_FILES = main.c init.c cleanup.c
+CORE_FILES = main.c init.c cleanup.c init_player.c
 
 PARS_SRCS = $(addprefix ${PARS_DIR}/, ${PARS_FILES})
 ENGINE_SRCS = $(addprefix ${ENGINE_DIR}/, ${ENGINE_FILES})

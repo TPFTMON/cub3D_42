@@ -47,7 +47,7 @@ int	on_key_press(int keycode, void *arg)
 	if (keycode == KEY_RAR)
 		cube->key_rar = 1;
 
-	printf("The key pressed: [%d]\n", keycode);
+	// printf("The key pressed: [%d]\n", keycode);
 
 	return (OKI);
 }
@@ -70,7 +70,7 @@ int	on_key_release(int keycode, void *arg)
 	if (keycode == KEY_RAR)
 		cube->key_rar = 0;
 
-	printf("The key RELEASED: [%d]\n", keycode);
+	// printf("The key RELEASED: [%d]\n", keycode);
 	return (OKI);
 }
 

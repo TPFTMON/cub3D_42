@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                                 */
+/*   cub3D.h                                            +      +    +   */
+/*                                                    ++ ++         ++     */
+/*   By abaryshe <abaryshe@student.42.fr>          +#+  ++       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 21:56:46 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/12/16 15:04:46 by abaryshe         ###   ########.fr       */
+/*   Created 2025/10/21 215646 by abaryshe          #+#    #+#             */
+/*   Updated 2025/12/16 150446 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,47 +178,50 @@ typedef struct s_ray
 
 // -------------------- engine --------------------
 
-// game_loop.c:
+// game_loop.c
 int	game_loop(void *arg);
 void	update_player(t_cube *cube);
 
-// hooks.c:
+// hooks.c
 void	init_hooks(t_cube *cube);
 
-// raycaster.c:
+// raycaster.c
 void    perform_raycasting(t_cube *cube);
 
-// draw.c:
+// draw.c
 void    my_pixel_put(struct s_img *img, int x, int y, int color);
 void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
 
-// player_move.c:
+// player_move.c
 void	move_player_forward(t_cube *cube);
 void	move_player_backward(t_cube *cube);
 void	move_player_left(t_cube *cube);
 void	move_player_right(t_cube *cube);
 
 
-// player_view.c:
+// player_view.c
 void    shift_view_left(t_cube *cube);
 void    shift_view_right(t_cube *cube);
 
 
-// render.c:
+// render.c
 // void    render_pixels(t_cube *cube);
 
 // -------------------- core --------------------
 
-// init.c:
+// init.c
 t_cube			*init_data_cube();
 int				init_mlx_cube(t_cube *cube);
 void    init_player(t_cube *cube);
 
-// cleanup.c:
+// init_player.c
+void    init_player(t_cube *cube);
+
+// cleanup.c
 void	*free_cube(t_cube *cube);
 int	ft_cleanup(t_cube *cube);
 
-    // testing: parsing.c + engine.c:
+    // testing
 void			parsing_report(void);
 void			engine_report(void);
 

@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 07:12:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/11/01 09:16:54 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:34:24 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,40 +59,6 @@ int	init_mlx_cube(t_cube *cube)
 				"Failed to get image data address\n", CRITICAL));
 	printf("screen.addr: [%p]\n", cube->screen.addr);
 	return (OKI);
-}
-
-void    init_player(t_cube *cube)
-{
-    if (cube->map.player_direction == NO)
-    {
-        cube->player.dir_x = 0;
-        cube->player.dir_y = -1;
-        cube->player.plane_x = 0.66; // Perpendicular to (0, -1) is (1, 0)
-        cube->player.plane_y = 0;
-    }
-    else if (cube->map.player_direction == SO)
-    {
-        cube->player.dir_x = 0;
-        cube->player.dir_y = 1;
-        cube->player.plane_x = -0.66;
-        cube->player.plane_y = 0;
-    }
-    else if (cube->map.player_direction == EA)
-    {
-        cube->player.dir_x = 1;
-        cube->player.dir_y = 0;
-        cube->player.plane_x = 0;
-        cube->player.plane_y = 0.66;
-    }
-    else if (cube->map.player_direction == WE)
-    {
-        cube->player.dir_x = -1;
-        cube->player.dir_y = 0;
-        cube->player.plane_x = 0;
-        cube->player.plane_y = -0.66;
-    }
-    cube->player.move_speed = 0.01;
-    cube->player.rot_speed = 0.01;
 }
 
 // static void	init_t_imgs(t_cube *cube);

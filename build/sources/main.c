@@ -15,6 +15,7 @@
 void    test_set_ceil_floor(t_cube *cube);
 void    test_set_player(t_cube *cube);
 void	test_fill_grid(t_map *map, int width, int height);
+void    test_set_position_on_grid(t_cube *cube, int x, int y);
 void    print_grid(t_map *map);
 
 int	main(int argc, char **argv)
@@ -31,6 +32,7 @@ int	main(int argc, char **argv)
     // test for player and map
     test_fill_grid(&cube->map, 10, 10);
     test_set_player(cube);
+    // test_set_position_on_grid(cube, 4, 4);
     print_grid(&cube->map);
     init_player(cube);
 
@@ -68,7 +70,7 @@ void    test_set_ceil_floor(t_cube *cube){
 }
 
 void    test_set_player(t_cube *cube){
-    cube->map.player_direction = SO;
+    cube->map.player_direction = NO;
 
     // Giving the player a valid starting position
     // (width / 2) + 0.5 centers them in the middle tile
@@ -128,4 +130,11 @@ void    print_grid(t_map *map){
         }
         printf("\n");
     }
+}
+
+void    test_set_position_on_grid(t_cube *cube, int x, int y){
+    if (cube->map.grid[y][x] != '1' /*&& x < cube->map.width && y < cube->map.height*/)
+        cube->map.grid[y][x] = 'N';
+    else
+        printf("WRONG VALUE FOR POSITION, BRO\n");
 }
