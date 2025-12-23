@@ -12,22 +12,23 @@
 
 #include "cub3D.h"
 
-void	*free_cube(t_cube *cube)
-{
-	// free all the stuff that needs to be freed. Like map or something
-    free_string_array(cube->map.grid);
-	if (cube)
-		free(cube);
-	return (NULL);
-}
+void	*free_cube(t_cube *cube);
+void	*free_mlx(t_cube *cube);
 
 /*
- * Main cleanup function. Frees cube data and destroys MiniLibX components.
+ * Purpose: Clean all the memory and destroy mlx components
  */
 int	ft_cleanup(t_cube *cube)
 {
 	if (!cube)
 		return (FAIL);
+	free_mlx(cube);
+	free_cube(cube);
+	return (OKI);
+}
+
+void	*free_mlx(t_cube *cube)
+{
 	if (cube->screen.img_ptr && cube->mlx_ptr)
 	{
 		mlx_destroy_image(cube->mlx_ptr, cube->screen.img_ptr);
@@ -44,29 +45,15 @@ int	ft_cleanup(t_cube *cube)
 		free(cube->mlx_ptr);
 		cube->mlx_ptr = NULL;
 	}
-	free_cube(cube);
-	return (OKI);
+	return (NULL);
 }
 
-// void	*free_cube(t_cube *cube)
-// {
+void	*free_cube(t_cube *cube)
+{
 	// free all the stuff that needs to be freed. Like map or something
-    // free_string_array(cube->map.grid);
-    // int	i;
-//
-	// if (!cube->map.grid)
-		// return (NULL);
-	// i = 0;
-	// while (cube->map.grid[i])
-		// i++;
-	// while (i >= 0)
-	// {
-		// free(cube->map.grid[i]);
-		// cube->map.grid[i] = NULL;
-		// i--;
-	// }
-	// free(cube->map.grid);
-	// if (cube)
-		// free(cube);
-	// return (NULL);
-// }
+	if (cube->map.grid)
+		free_string_array(cube->map.grid);
+	if (cube)
+		free(cube);
+	return (NULL);
+}

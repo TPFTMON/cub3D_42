@@ -18,7 +18,7 @@ void    set_player_direction(t_cube *cube);
 void    init_player(t_cube *cube)
 {
     set_player_direction(cube);
-    // set_player_position(cube);
+    set_player_position(cube);
     cube->player.move_speed = 0.009;
     cube->player.rot_speed = 0.009;
 }
@@ -63,30 +63,32 @@ void    set_player_direction(t_cube *cube)
         set_east_west(cube);
 }
 
-// void    set_player_position(t_cube *cube)
-// {
-//     int y;
-//     int x;
+void    set_player_position(t_cube *cube)
+{
+	int		x;
+	int		y;
+	bool	is_player;
 
-//     y = 0;
-//     while (cube->map.grid[y])
-//     {
-//         x = 0;
-//         while (cube->map.grid[y][x])
-//         {
-//             if (cube->map.grid[y][x] == 'N' || cube->map.grid[y][x] == 'S' || \
-//                 cube->map.grid[y][x] == 'E' || cube->map.grid[y][x] == 'W')
-//                 break ;
-//             x++;
-//         }
-//         y++;
-//     }
-//     cube->player.pos_x = (double)x + 0.5;
-//     cube->player.pos_y = (double)y + 0.5;
-//     if (cube->map.grid[(int)cube->player.pos_y][(int)cube->player.pos_x] == '1'){
-//         cube->player.pos_x += 1.0; // Shift them slightly if they spawned in a wall
-//     }
-// }
+	is_player = 0;
+    y = 0;
+    while (cube->map.grid[y] && !is_player)
+    {
+        x = 0;
+        while (cube->map.grid[y][x] && !is_player)
+        {
+            if (cube->map.grid[y][x] == 'N' || cube->map.grid[y][x] == 'S' || \
+                cube->map.grid[y][x] == 'E' || cube->map.grid[y][x] == 'W')
+                is_player = true;
+            x++;
+        }
+        y++;
+    }
+    cube->player.pos_x = (double)x - 0.5;
+    cube->player.pos_y = (double)y - 0.5;
+    if (cube->map.grid[(int)cube->player.pos_y][(int)cube->player.pos_x] == '1'){
+        cube->player.pos_x += 1.0; // Shift them slightly if they spawned in a wall
+    }
+}
 
 
 

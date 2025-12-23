@@ -207,19 +207,26 @@ void    shift_view_right(t_cube *cube);
 // render.c
 // void    render_pixels(t_cube *cube);
 
+// testing engine:
+void	test_ALL_engine(t_cube *cube);
+void    test_set_ceil_floor(t_cube *cube);
+void	test_fill_grid(t_map *map, int width, int height);
+void    test_set_position_on_grid(t_cube *cube, int x, int y);
+void    print_grid(t_map *map);
+// void    test_set_player(t_cube *cube);
+
 // -------------------- core --------------------
 
 // init.c
 t_cube			*init_data_cube();
 int				init_mlx_cube(t_cube *cube);
-void    init_player(t_cube *cube);
 
 // init_player.c
-void    init_player(t_cube *cube);
+void	init_player(t_cube *cube);
 
 // cleanup.c
 void	*free_cube(t_cube *cube);
-int	ft_cleanup(t_cube *cube);
+int		ft_cleanup(t_cube *cube);
 
     // testing
 void			parsing_report(void);
