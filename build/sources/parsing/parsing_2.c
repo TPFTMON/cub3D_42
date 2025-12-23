@@ -88,5 +88,6 @@ void	parse_cub_file(t_cube *cube, const char *path)
 	close(fd);
 	cube->map.height = row;
 	require_all_elements(&cube->map);
+	//print_grid(&cube->map);
 	validate_map(&cube->map);
 }

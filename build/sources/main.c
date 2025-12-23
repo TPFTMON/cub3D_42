@@ -30,7 +30,8 @@ int	main(int argc, char **argv)
 	parse_cub_file(cube, argv[1]);
 
     // test for player and map
-	test_ALL_engine(cube);
+	// test_ALL_engine(cube);
+	print_grid(&cube->map);
 
 	init_player(cube);
 

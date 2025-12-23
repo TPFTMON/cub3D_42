@@ -61,6 +61,17 @@ void	test_fill_grid(t_map *map, int width, int height){
 }
 
 void    print_grid(t_map *map){
+    if (!map->raw)
+        return ;
+    for (int i = 0; map->raw[i]; i++){
+        for (int j = 0; map->raw[i][j]; j++){
+            printf("%c", map->raw[i][j]);
+        }
+        printf("\n");
+    }
+    printf("---\n");
+    if (!map->grid)
+        return ;
     for (int i = 0; map->grid[i]; i++){
         for (int j = 0; map->grid[i][j]; j++){
             printf("%c", map->grid[i][j]);

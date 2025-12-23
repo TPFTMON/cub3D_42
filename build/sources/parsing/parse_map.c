@@ -28,10 +28,13 @@ void	set_spawn(t_map *map, int x, int y, char c)
 	else if (c == 'E')
 		map->player_direction = EA;
 	else
+	{
+		map->has_spawn = false; 
 		handle_error("Parser:invalid player dir char");
+	}
 }
 
-static char *dup_and_process_map_row(t_map *map, char *line, int row, int *out_len)
+/*static char *dup_and_process_map_row(t_map *map, char *line, int row, int *out_len)
 {
     char    *dup;
     int     x;
@@ -73,9 +76,9 @@ void	parse_map(t_map *map, char *line, int row)
         map->width = len;//check
     if (row + 1 > map->height)
         map->height = row + 1;//check
-}
+}*/
 
-/*void	parse_map(t_map *map, char *line, int row)
+void	parse_map(t_map *map, char *line, int row)
 {
 	char *dup;
 	int	x;
@@ -97,7 +100,7 @@ void	parse_map(t_map *map, char *line, int row)
 		if (dup[x] == 'N' || dup[x] == 'S' || dup[x] == 'E' || dup[x] == 'W')
 		{
 			set_spawn(map, x, row, dup[x]);
-			dup[x] = '0';
+			//dup[x] = '0';
 		}
 		x++;
 	}
@@ -106,4 +109,4 @@ void	parse_map(t_map *map, char *line, int row)
 		map->width = x;
 	if (row + 1 > map->height)//debatable
 		map->height = row + 1;
-}*/
+}

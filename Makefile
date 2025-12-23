@@ -31,7 +31,7 @@ CORE_DIR = build/sources
 # --- Tools ---
 FREM = rm -f
 CC = cc
-CMPFLAGS = -Wall -Wextra -Werror
+CMPFLAGS = -Wall -Wextra -Werror -g3
 DEBUG_FLAGS = ${CMPFLAGS} -g -fsanitize=address
 INCLUDES = -I ${INC_DIR} -I ${LIBFT_DIR}/includes -I ${MLX_DIR}
 

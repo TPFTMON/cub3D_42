@@ -281,7 +281,16 @@ void	build_grid(t_map *map)
 		x = 0;
 		while (x < map->width)
 		{
-			if (map->raw[y] && x < (int)ft_strlen(map->raw[y]))
+			if (map->raw[y] && x < (int1000000001
+1000000001
+1000010001
+1000000001
+1000000001
+1000000001
+1000000001
+1111111111
+---
+)ft_strlen(map->raw[y]))
 				map->grid[y][x] = map->raw[y][x];
 			else
 				map->grid[y][x] = ' ';

@@ -32,7 +32,7 @@ int	parse_u8(char **p)
 	return ((int)val);
 }
 
-static char parse_color_header(char *line, char *out_kind)
+/*static char parse_color_header(char *line, char *out_kind)
 {
     char    *p;
 
@@ -101,9 +101,9 @@ void	parse_floor_ceiling_colors(t_map *map, char *line)
     p = parse_color_header(line, &kind);
     color = parse_rgb(p);
     apply_parsed_colors(map, kind, color);
-}
+}*/
 
-/*void	parse_floor_ceiling_colors(t_map *map, char *line)
+void	parse_floor_ceiling_colors(t_map *map, char *line)
 {
 	char *p;
 	char	kind;
@@ -144,4 +144,4 @@ void	parse_floor_ceiling_colors(t_map *map, char *line)
 		map->color_ceil = pack_rgb(r, g, b);
 		map->has_ceil = true;
 	}
-}*/
+}

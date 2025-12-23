@@ -52,6 +52,8 @@ void	validate_map(t_map *map)
 	int	y;
 	int	x;
 
+	//print_grid(map);
+	//printf("validate map\n");
 	if (!map)
 		handle_error("Parser: internal null in validate_map");
 	if (map->height <= 0 || map->width <= 0)
@@ -74,8 +76,8 @@ void	validate_map(t_map *map)
 							cell(map, y, x - 1) == ' ' || cell(map, y, x+ 1) == ' ')
 					handle_error("Parser: map not closed(walkable touches void)");
 			}
-			else if (map->grid[y][x] != '1' && map->grid[y][x] != ' ')
-				handle_error("Parser: unexpected cell in final grid");
+			//else if (map->grid[y][x] != '1' && map->grid[y][x] != ' ')
+			//	handle_error("Parser: unexpected cell in final grid");
 			x++;
 		}
 		y++;
