@@ -123,7 +123,11 @@ typedef struct s_map
 
 	char		*texture_paths[TEX_NB];
 	t_tex		player_direction;
-
+	int			spawn_x;
+	int			spawn_y;
+	bool		has_spawn; //will need for cude->player.pos_x/pos_y
+	bool		has_floor;
+	bool		has_ceil;
 	char		**grid;    // rectangular map (same dims as width x height)
 }				t_map;
 
@@ -176,7 +180,35 @@ int	ft_cleanup(t_cube *cube);
 
 
 // testing: parsing.c + engine.c:
+void			handle_error(const char *msg);
+char			*skip_spaces(char *s);
+void			trim_newline(char *s);
+int				is_only_spaces(const char *s);
+int				is_valid_map_char(char c);
+int				pack_rgb(int r, int g, int b);
+int				starts_with_id(const char *s, const char *id);
+const char		*text_id(t_tex t);
+void			parse_texture(t_map *map, char *line, t_tex texture_type);
+int				parse_u8(char **p);
+void			expect_char(char **p, char c);
+void			parse_floor_ceiling_colors(t_map *map, char *line);
+void			set_spawn(t_map *map, int x, int y, char c);
+void			parse_map(t_map *map, char *line, int row);
+char			cell(t_map *m, int y, int x);
+void			build_grid(t_map *map);
+void			validate_map(t_map *map);
+bool			starts_with_id_local(const char *s, const char *id);
+bool			looks_like_map_line(char *line);
+void			parse_config_line(t_map *map, char *line);
+void			require_all_elements(t_map *map);
+void			parse_cub_file(t_cube *cube, const char *path);
 void			parsing_report(void);
+
+//textures.c
+void			load_one(t_cube *cube, t_tex t);
+int				load_textures(t_cube *cube);
+
 void			engine_report(void);
+void			update_player(t_cube *cube);
 
 #endif

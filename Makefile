@@ -41,7 +41,7 @@ LIBS_WITH_FLAGS = ${LIBFT} ${MLX} -lXext -lX11 -lm
 # The files to compile in parsing directory go HERE
 # || || || || || ||
 # \/ \/ \/ \/ \/ \/
-PARS_FILES = parsing.c
+PARS_FILES = validate_map.c parsing.c parsing_2.c parser_utils.c parser_errors.c parse_texture.c parse_map.c parse_colors.c 
 ENGINE_FILES = engine.c hooks.c game_loop.c
 CORE_FILES = cub3D.c init.c cleanup.c
 
