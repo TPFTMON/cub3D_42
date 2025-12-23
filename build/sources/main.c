@@ -18,24 +18,27 @@ int	main(int argc, char **argv)
 {
 	t_cube	*cube;
 
-	(void)argc;
-	(void)argv;
+	//(void)argc;
+	//(void)argv;
+	if (argc != 2)
+		handle_error("Correct format: ./cub3D <map.cub>");
 	cube = init_data_cube();
 	if (!cube)
 		return (EXC_CRIT);
 
 	// PARSING IS HAPPENING HERE -> DATA FOR ENGINE WRITTEN TO STRUCT
+	parse_cub_file(cube, argv[1]);
 
     // test for player and map
 	test_ALL_engine(cube);
 
 	init_player(cube);
 
-	parsing_report();
-	engine_report();
-	char	*miaou = "\e[1;35mMiaou miaou miaou miaou miaou\e[0m\n";
-	ft_strlen(miaou);
-	printf("%s", miaou);
+	//parsing_report();
+	//engine_report();
+	//char	*miaou = "\e[1;35mMiaou miaou miaou miaou miaou\e[0m\n";
+	//ft_strlen(miaou);
+	//printf("%s", miaou);
 
 	// THEN THE ENGINE DOES HIS GAME_LOOP
 	setup_mlx_and_engine(cube);
