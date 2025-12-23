@@ -61,7 +61,8 @@ int	init_mlx_cube(t_cube *cube)
 	return (OKI);
 }
 
-void    init_player(t_cube *cube){
+void    init_player(t_cube *cube)
+{
     if (cube->map.player_direction == NO)
     {
         cube->player.dir_x = 0;
@@ -90,6 +91,8 @@ void    init_player(t_cube *cube){
         cube->player.plane_x = 0;
         cube->player.plane_y = -0.66;
     }
+    cube->player.move_speed = 0.01;
+    cube->player.rot_speed = 0.01;
 }
 
 // static void	init_t_imgs(t_cube *cube);

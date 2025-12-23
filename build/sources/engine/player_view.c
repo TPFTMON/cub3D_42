@@ -14,7 +14,7 @@
 
 void    shift_view_left(t_cube *cube)
 {
-    double  rot_speed = cube->player.rot_speed * cube->delta_time;
+    double  rot_speed = cube->player.rot_speed/* * cube->delta_time*/;
     double  old_dir_x = cube->player.dir_x;
     double  old_plane_x = cube->player.plane_x;
 
@@ -29,7 +29,7 @@ void    shift_view_left(t_cube *cube)
 
 void    shift_view_right(t_cube *cube)
 {
-    double  rot_speed = cube->player.rot_speed * cube->delta_time;
+    double  rot_speed = cube->player.rot_speed/* * cube->delta_time*/;
     double  old_dir_x = cube->player.dir_x;
     double  old_plane_x = cube->player.plane_x;
 

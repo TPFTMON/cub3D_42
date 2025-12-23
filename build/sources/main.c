@@ -68,7 +68,7 @@ void    test_set_ceil_floor(t_cube *cube){
 }
 
 void    test_set_player(t_cube *cube){
-    cube->map.player_direction = NO;
+    cube->map.player_direction = SO;
 
     // Giving the player a valid starting position
     // (width / 2) + 0.5 centers them in the middle tile

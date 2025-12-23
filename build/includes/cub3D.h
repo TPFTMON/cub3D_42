@@ -194,6 +194,10 @@ void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
 
 // player_move.c:
 void	move_player_forward(t_cube *cube);
+void	move_player_backward(t_cube *cube);
+void	move_player_left(t_cube *cube);
+void	move_player_right(t_cube *cube);
+
 
 // player_view.c:
 void    shift_view_left(t_cube *cube);
