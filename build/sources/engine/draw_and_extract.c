@@ -1,0 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/23 04:27:05 by abaryshe          #+#    #+#             */
+/*   Updated: 2025/12/16 15:24:10 by abaryshe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3D.h"
+
+// offset = (y * line_len) + (x * (bits_per_pixel / 8))
+// Purpose: Put the chosen color on the mlx array
+void	my_pixel_put(t_img *img, int x, int y, int color)
+{
+	int		offset;
+	char	*dest;
+
+	if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HEIGHT)
+		return ;
+
+	offset = ((y * img->line_len) + (x * (img->bpp / 8)));
+	dest = img->addr + offset;
+
+	*(unsigned int *)dest = color;
+}
+
+void	draw_ceiling_floor(t_img *img, int ceil_col, int floor_col)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < WIN_HEIGHT / 2)
+	{
+		x = 0;
+		while (x < WIN_WIDTH)
+		{
+			my_pixel_put(img, x, y, ceil_col);
+			x++;
+		}
+		y++;
+	}
+
+	y = WIN_HEIGHT / 2;
+	while (y < WIN_HEIGHT)
+	{
+		x = 0;
+		while (x < WIN_WIDTH)
+		{
+			my_pixel_put(img, x, y, floor_col);
+			x++;
+		}
+		y++;
+	}
+}
+
+// Purpose: Get the color of a specific pixel from a texture structure
+int	get_texture_pixel_color(t_img *tex, int x, int y)
+{
+	int		offset;
+	char	*dest;
+
+	if (x < 0 || x >= tex->width || y < 0 || y >= tex->height)
+		return (0);
+
+	offset = (y * tex->line_len) + (x * (tex->bpp / 8));
+	dest = tex->addr + offset;
+
+	return (*(unsigned int *)dest);
+}

@@ -61,25 +61,26 @@
 # define KEY_RAR 65363
 
 // --- Messages ---
+# define ERROR "Error\n"
 # define ERR_CRITICAL "\e[1;31mcritical error\e[0m: memory failure.\n"
+
+# define ERR_NO_TEX "Error\nParsing: wrong path to North texture\n"
+# define ERR_SO_TEX "Error\nParsing: wrong path to South texture\n"
+# define ERR_EA_TEX "Error\nParsing: wrong path to East texture\n"
+# define ERR_WE_TEX "Error\nParsing: wrong path to West texture\n"
 
 # define MSG_EXIT "\e[1;32mExiting cub3D... Bye!\e[0m\n"
 
-// // --- Required By Game ---
-// # define TILE_EMPTY 0
-// # define TILE_WALL 1
-// # define TILE_OUT  -1
-
 // <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
 
-typedef enum	e_tex
+typedef enum e_tex
 {
-	NO, 	// North
-	SO, 	// South
-	WE, 	// West
-	EA, 	// East
-	TEX_NB  // Number of textures
-}			t_tex;
+	NO,    // North
+	SO,    // South
+	WE,    // West
+	EA,    // East
+	TEX_NB // Number of textures
+}				t_tex;
 
 typedef struct s_img
 {
@@ -96,13 +97,13 @@ typedef struct s_img
 typedef struct s_player
 {
 	double		pos_x;
-	double		pos_y;             // position in map coords (float)
+	double		pos_y;           // position in map coords (float)
 
 	double		dir_x;
-	double		dir_y;         // direction vector (normalized)
+	double		dir_y;       // direction vector (normalized)
 
 	double		plane_x;
-	double		plane_y;   // camera plane (perp to dir)
+	double		plane_y; // camera plane (perp to dir)
 
 	double		move_speed;
 	double		rot_speed;
@@ -113,22 +114,24 @@ typedef struct s_player
  */
 typedef struct s_map
 {
-	char		**raw;       // array of strings from parser (keep for error messages)
+	char		**raw;   // array of strings from parser (keep for error messages)
 
-	int			width;       // max row length
-	int			height;      // number of rows
+	int			width;     // max row length
+	int			height;       // number of rows
 
-	int			color_floor; // packed RGB
+	int			color_floor;     // packed RGB
 	int			color_ceil;
 
 	char		*texture_paths[TEX_NB];
 	t_tex		player_direction;
+
 	int			spawn_x;
 	int			spawn_y;
-	bool		has_spawn; //will need for cude->player.pos_x/pos_y
+	bool		has_spawn; // will need for cude->player.pos_x/pos_y
 	bool		has_floor;
 	bool		has_ceil;
-	char		**grid;      // rectangular map (same dims as width x height)
+
+	char		**grid; // rectangular map (same dims as width x height)
 }				t_map;
 
 typedef struct s_cube
@@ -156,83 +159,94 @@ typedef struct s_cube
 // <<< engine structs >>>
 typedef struct s_ray
 {
-    double      camera_x;
-    double      dir_x;
-    double      dir_y;
-    int         map_x;
-    int         map_y;
-    int         step_x;
-    int         step_y;
-    double      side_dist_x;
-    double      side_dist_y;
-    double      delta_dist_x;
-    double      delta_dist_y;
-    double      perp_wall_dist;
-    int         side;           // 0 for NS, 1 for EW
-    int         line_height;
-    int         draw_start;
-    int         draw_end;
-}               t_ray;
+	double		camera_x;
+	double		dir_x;
+	double		dir_y;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			side;            // 0 for NS, 1 for EW
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+}				t_ray;
+
+typedef struct s_render
+{
+	t_img		*texture;
+	double		wall_x;
+	int			tex_x;
+	int			tex_y;
+	double		step;
+	double		tex_pos;
+	int			y;
+	int			color;
+}				t_render;
 
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
-
-// -------------------- parsing --------------------
-// ...
-
 
 // -------------------- engine --------------------
 
 // game_loop.c
-int	game_loop(void *arg);
-void	update_player(t_cube *cube);
+int				game_loop(void *arg);
+void			update_player(t_cube *cube);
 
 // hooks.c
-void	init_hooks(t_cube *cube);
+void			init_hooks(t_cube *cube);
 
 // raycaster.c
-void    perform_raycasting(t_cube *cube);
+void			perform_raycasting(t_cube *cube);
 
-// draw.c
-void    my_pixel_put(struct s_img *img, int x, int y, int color);
-void    draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
+// draw_and_extract.c
+void			my_pixel_put(struct s_img *img, int x, int y, int color);
+void			draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
+int				get_texture_pixel_color(t_img *tex, int x, int y);
 
 // player_move.c
-void	move_player_forward(t_cube *cube);
-void	move_player_backward(t_cube *cube);
-void	move_player_left(t_cube *cube);
-void	move_player_right(t_cube *cube);
-
+void			move_player_forward(t_cube *cube);
+void			move_player_backward(t_cube *cube);
+void			move_player_left(t_cube *cube);
+void			move_player_right(t_cube *cube);
 
 // player_view.c
-void    shift_view_left(t_cube *cube);
-void    shift_view_right(t_cube *cube);
+void			shift_view_left(t_cube *cube);
+void			shift_view_right(t_cube *cube);
 
-
-// render.c
-// void    render_pixels(t_cube *cube);
+// textures.c
+void			render_wall_strip(t_ray *ray, int x, t_cube *cube);
 
 // testing engine:
-void	test_ALL_engine(t_cube *cube);
-void    test_set_ceil_floor(t_cube *cube);
-void	test_fill_grid(t_map *map, int width, int height);
-void    test_set_position_on_grid(t_cube *cube, int x, int y);
-void    print_grid(t_map *map);
+void			test_ALL_engine(t_cube *cube);
+void			test_set_ceil_floor(t_cube *cube);
+void			test_fill_grid(t_map *map, int width, int height);
+void			test_set_position_on_grid(t_cube *cube, int x, int y);
+void			print_grid(t_map *map);
+void			render_test_flat_color(t_ray *ray, int x, t_cube *cube);
 // void    test_set_player(t_cube *cube);
 
 // -------------------- core --------------------
 
 // init.c
-t_cube			*init_data_cube();
+t_cube			*init_data_cube(void);
 int				init_mlx_cube(t_cube *cube);
 
 // init_player.c
-void	init_player(t_cube *cube);
+void			init_player(t_cube *cube);
+
+// init_textures.c
+int				init_textures(t_cube *cube);
 
 // cleanup.c
-void	*free_cube(t_cube *cube);
-int		ft_cleanup(t_cube *cube);
+void			*free_cube(t_cube *cube);
+int				ft_cleanup(t_cube *cube);
 
-    // testing
+// -------------------- parsing --------------------
 void			handle_error(const char *msg);
 char			*skip_spaces(char *s);
 void			trim_newline(char *s);
@@ -257,7 +271,7 @@ void			require_all_elements(t_map *map);
 void			parse_cub_file(t_cube *cube, const char *path);
 void			parsing_report(void);
 
-//textures.c
+// textures.c
 void			load_one(t_cube *cube, t_tex t);
 int				load_textures(t_cube *cube);
 

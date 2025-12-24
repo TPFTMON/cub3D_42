@@ -1,10 +1,10 @@
-NO textures/simonkraft/soul_sand.xpm
-SO textures/simonkraft/soul_soil_01.xpm
-WE textures/simonkraft/soul_soil.xpm
-EA textures/simonkraft/soul_sand.xpm
+NO maps/textures/other/sky1.xpm
+SO maps/textures/other/sky1.xpm
+WE maps/textures/other/sky1.xpm
+EA maps/textures/other/sky1.xpm
 
-C 53,41,34
-F 45,33,27
+C 18,238,238
+F 18,150,238
 
 1111111111
 1000000001

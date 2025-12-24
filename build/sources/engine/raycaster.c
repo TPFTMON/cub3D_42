@@ -15,8 +15,6 @@
 void    init_ray(t_ray *ray, int x, t_cube *cube);
 void    find_wall_dda(t_ray *ray, t_cube *cube);
 void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/);
-// void    render_wall_strip(t_ray *ray, int x, t_cube *cube);
-void    render_test_flat_color(t_ray *ray, int x, t_cube *cube);
 
 void perform_raycasting(t_cube *cube)
 {
@@ -32,8 +30,8 @@ void perform_raycasting(t_cube *cube)
 
         calculate_wall_height(&ray/*, cube*/);
 
-        // render_wall_strip(&ray, x, cube);
-        render_test_flat_color(&ray, x, cube);
+        render_wall_strip(&ray, x, cube);
+        // render_test_flat_color(&ray, x, cube);
 
         x++;
     }
@@ -116,36 +114,3 @@ void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/)
     if (ray->draw_end > WIN_HEIGHT)
         ray->draw_end = WIN_HEIGHT - 1;
 }
-
-void    render_test_flat_color(t_ray *ray, int x, t_cube *cube)
-{
-    int color;
-
-    // Determine color based on side and direction
-    if (ray->side == 0) // Hit a vertical grid line
-    {
-        if (ray->dir_x > 0)
-            color = 0x00FF00; // Green (East-facing wall)
-        else
-            color = 0xFF0000; // Red (West-facing wall)
-    }
-    else // Hit a horizontal grid line
-    {
-        if (ray->dir_y > 0)
-            color = 0xFFFF00; // Yellow (South-facing wall)
-        else
-            color = 0x0000FF; // Blue (North-facing wall)
-    }
-
-    // Draw the vertical line
-    int y = ray->draw_start;
-    while (y <= ray->draw_end)
-    {
-        my_pixel_put(&cube->screen, x, y, color);
-        y++;
-    }
-}
-
-// Purpose: Calculate exactly what pixel of the texture to paint and paint it
-// (For now I want it to just paint different sides of the walls in different colors)
-// void    render_wall_strip(t_ray *ray, int x, t_cube *cube){

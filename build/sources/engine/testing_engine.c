@@ -89,6 +89,35 @@ void    test_set_position_on_grid(t_cube *cube, int x, int y){
 
 }
 
+void    render_test_flat_color(t_ray *ray, int x, t_cube *cube)
+{
+    int color;
+
+    // Determine color based on side and direction
+    if (ray->side == 0) // Hit a vertical grid line
+    {
+        if (ray->dir_x > 0)
+            color = 0x00FF00; // Green (East-facing wall)
+        else
+            color = 0xFF0000; // Red (West-facing wall)
+    }
+    else // Hit a horizontal grid line
+    {
+        if (ray->dir_y > 0)
+            color = 0xFFFF00; // Yellow (South-facing wall)
+        else
+            color = 0x0000FF; // Blue (North-facing wall)
+    }
+
+    // Draw the vertical line
+    int y = ray->draw_start;
+    while (y <= ray->draw_end)
+    {
+        my_pixel_put(&cube->screen, x, y, color);
+        y++;
+    }
+}
+
 // void    test_set_player(t_cube *cube){
 //     // Giving the player a valid starting position
 //     // (width / 2) + 0.5 centers them in the middle tile

@@ -31,7 +31,7 @@ CORE_DIR = build/sources
 # --- Tools ---
 FREM = rm -f
 CC = cc
-CMPFLAGS = -Wall -Wextra -Werror -g3
+CMPFLAGS = -Wall -Wextra -Werror #-g3
 DEBUG_FLAGS = ${CMPFLAGS} -g -fsanitize=address
 INCLUDES = -I ${INC_DIR} -I ${LIBFT_DIR}/includes -I ${MLX_DIR}
 
@@ -41,9 +41,9 @@ LIBS_WITH_FLAGS = ${LIBFT} ${MLX} -lXext -lX11 -lm
 # The files to compile in parsing directory go HERE
 # || || || || || ||
 # \/ \/ \/ \/ \/ \/
-PARS_FILES = validate_map.c parsing.c parsing_2.c parser_utils.c parser_errors.c parse_texture.c parse_map.c parse_colors.c 
-ENGINE_FILES = engine.c hooks.c game_loop.c draw.c raycaster.c player_move.c player_view.c testing_engine.c
-CORE_FILES = main.c init.c cleanup.c init_player.c
+PARS_FILES = validate_map.c parsing.c parsing_2.c parser_utils.c parser_errors.c parse_texture.c parse_map.c parse_colors.c
+ENGINE_FILES = engine.c hooks.c game_loop.c draw_and_extract.c raycaster.c player_move.c player_view.c textures.c testing_engine.c
+CORE_FILES = main.c init.c cleanup.c init_player.c init_textures.c
 
 PARS_SRCS = $(addprefix ${PARS_DIR}/, ${PARS_FILES})
 ENGINE_SRCS = $(addprefix ${ENGINE_DIR}/, ${ENGINE_FILES})
