@@ -27,13 +27,22 @@ int	ft_cleanup(t_cube *cube)
 	return (OKI);
 }
 
+static void	destroy_image(t_cube *cube, t_img *image)
+{
+	if (image->img_ptr && cube->mlx_ptr)
+	{
+		mlx_destroy_image(cube->mlx_ptr, image->img_ptr);
+		image->img_ptr = NULL;
+	}
+}
+
 void	*free_mlx(t_cube *cube)
 {
-	if (cube->screen.img_ptr && cube->mlx_ptr)
-	{
-		mlx_destroy_image(cube->mlx_ptr, cube->screen.img_ptr);
-		cube->screen.img_ptr = NULL;
-	}
+	destroy_image(cube, &cube->screen);
+	destroy_image(cube, &cube->textures[NO]);
+	destroy_image(cube, &cube->textures[SO]);
+	destroy_image(cube, &cube->textures[EA]);
+	destroy_image(cube, &cube->textures[WE]);
 	if (cube->win_ptr && cube->mlx_ptr)
 	{
 		mlx_destroy_window(cube->mlx_ptr, cube->win_ptr);
