@@ -18,7 +18,6 @@ void	move_player_forward(t_cube *cube)
     double  new_x = cube->player.pos_x + cube->player.dir_x * speed;
     double  new_y = cube->player.pos_y + cube->player.dir_y * speed;
 
-    // Basic Collision:
     if (cube->map.grid[(int)cube->player.pos_y][(int)new_x] != '1')
         cube->player.pos_x = new_x;
     if (cube->map.grid[(int)new_y][(int)cube->player.pos_x] != '1')

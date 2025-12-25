@@ -54,10 +54,6 @@ void	render_wall_strip(t_ray *ray, int x, t_cube *cube)
 	render.y = ray->draw_start;
 	while (render.y < ray->draw_end)
 	{
-		// render.tex_y = (int)render.tex_pos & (render.texture->height - 1);
-		// The '& (height - 1)' is a bitwise optimization for 'mod height'
-		// ONLY works if texture size is power of 2 (64, 128, etc).
-		// If your textures are NOT power of 2, use:
 		render.tex_y = (int)render.tex_pos % render.texture->height;
 		render.tex_pos += render.step;
 

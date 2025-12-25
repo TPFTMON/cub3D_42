@@ -18,8 +18,6 @@ int	main(int argc, char **argv)
 {
 	t_cube	*cube;
 
-	//(void)argc;
-	//(void)argv;
 	if (argc != 2)
 		handle_error("Correct format: ./cub3D <map.cub>");
 	cube = init_data_cube();
@@ -28,13 +26,10 @@ int	main(int argc, char **argv)
 
 	parse_cub_file(cube, argv[1]);
 
-    // test for player and map
-	// test_ALL_engine(cube);
 	print_grid(&cube->map);
 
 	init_player(cube);
 
-	// THEN THE ENGINE DOES HIS GAME_LOOP
 	setup_mlx_and_engine(cube);
 	return (OKI);
 }

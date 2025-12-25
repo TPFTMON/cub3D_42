@@ -47,8 +47,6 @@ int	on_key_press(int keycode, void *arg)
 	if (keycode == KEY_RAR)
 		cube->key_rar = 1;
 
-	// printf("The key pressed: [%d]\n", keycode);
-
 	return (OKI);
 }
 
@@ -70,43 +68,16 @@ int	on_key_release(int keycode, void *arg)
 	if (keycode == KEY_RAR)
 		cube->key_rar = 0;
 
-	// printf("The key RELEASED: [%d]\n", keycode);
 	return (OKI);
 }
 
 void	init_hooks(t_cube *cube)
 {
-	/*
-	 * mlx_hook for the RED CROSS
-	 * 17 = DestroyNotify (the red cross event)
-	 * 0 = NoEventMask (this is special for DestroyNotify)
-	 * on_destroy = on destroy event function
-	 * cube = the (void *) param to pass to function
-	 */
 	mlx_hook(cube->win_ptr, 17, 0, on_destroy, cube);
 
-	/*
-	 * mlx_hook for KEY PRESS
-	 * 2 = KeyPress event
-	 * (1L<<0) = KeyPressMask
-	 * on_key_press = on press event function
-	 * cube = param
-	 */
 	mlx_hook(cube->win_ptr, 2, (1L<<0), on_key_press, cube);
 
-	/*
-	 * mlx_hook for KEY RELEASE
-	 * 3 = KeyRelease event
-	 * (1L<<1) = KeyReleaseMask
-	 * on_key_release = on release event funtion
-	 * cube = param
-	 */
 	mlx_hook(cube->win_ptr, 3, (1L<<1), on_key_release, cube);
 
-	/*
-	 * Located in game_loop.c
-	 * as it is, arguably,
-	 * the most important hook
-	 */
 	mlx_loop_hook(cube->mlx_ptr, game_loop, cube);
 }

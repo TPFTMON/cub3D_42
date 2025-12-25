@@ -14,7 +14,7 @@
 
 void    init_ray(t_ray *ray, int x, t_cube *cube);
 void    find_wall_dda(t_ray *ray, t_cube *cube);
-void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/);
+void    calculate_wall_height(t_ray *ray);
 
 void perform_raycasting(t_cube *cube)
 {
@@ -28,10 +28,9 @@ void perform_raycasting(t_cube *cube)
 
         find_wall_dda(&ray, cube);
 
-        calculate_wall_height(&ray/*, cube*/);
+        calculate_wall_height(&ray);
 
         render_wall_strip(&ray, x, cube);
-        // render_test_flat_color(&ray, x, cube);
 
         x++;
     }
@@ -97,8 +96,6 @@ void    find_wall_dda(t_ray *ray, t_cube *cube)
 // Purpose: Calculate wall height :)
 void    calculate_wall_height(t_ray *ray/*, t_cube *cube*/)
 {
-    // ray->perp_wall_dist = (ray->map_x - cube->player.pos_x + (1 - ray->step_x) / 2) / ray->dir_x; // More safe approach
-
     if (ray->side == 0)
         ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
     else

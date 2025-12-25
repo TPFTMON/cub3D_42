@@ -10,9 +10,4 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-
-void	engine_report(void)
-{
-	printf("Bro... \e[1;34mThis will be our engine block of cub3D!\n\e[0m");
-}
+// ANOTHER MIAOU

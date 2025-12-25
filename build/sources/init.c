@@ -12,52 +12,42 @@
 
 #include "cub3D.h"
 
-t_cube	*init_data_cube()
+t_cube	*init_data_cube(void)
 {
 	t_cube	*cube;
 
 	cube = (t_cube *)ft_calloc(1, sizeof(t_cube));
 	if (!cube)
 	{
-		print_error_with_code("cub3D", ERR_CRITICAL, CRITICAL);
+		print_error_with_code(NULL, ERR_CRITICAL, CRITICAL);
 		return (NULL);
 	}
-
 	return (cube);
 }
 
 int	init_mlx_cube(t_cube *cube)
 {
-	// if (!cube)
-	// 	return (print_error_with_code(NULL, "cube is NULL\n", CRITICAL));
+	if (!cube)
+		return (print_error_with_code(NULL, "cube is NULL\n", CRITICAL));
 
-	printf("Entered init_mlx_cude:\n");
 	cube->mlx_ptr = mlx_init();
 	if (!cube->mlx_ptr)
-		return (print_error_with_code("cub3D: mlx_init",
-				"Failed to initialize MiniLibX\n", CRITICAL));
-	printf("mlx_ptr: [%p]\n", cube->mlx_ptr);
+		return (print_error_with_code(NULL, ERR_MLX, CRITICAL));
 
-	cube->win_ptr = mlx_new_window(cube->mlx_ptr, WIN_WIDTH,
-			WIN_HEIGHT, "cube");
+	cube->win_ptr = mlx_new_window(cube->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
+			"cube");
 	if (!cube->win_ptr)
-		return (print_error_with_code("cub3D: mlx_new_window",
-				"Failed to create window\n", CRITICAL));
-	printf("win_ptr: [%p]\n", cube->win_ptr);
+		return (print_error_with_code(NULL, ERR_WINDOW, CRITICAL));
 
-	cube->screen.img_ptr = mlx_new_image(cube->mlx_ptr, WIN_WIDTH,
-			WIN_HEIGHT);
+	cube->screen.img_ptr = mlx_new_image(cube->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!cube->screen.img_ptr)
-		return (print_error_with_code("cub3D: mlx_new_image",
-				"Failed to create image buffer\n", CRITICAL));
-	printf("screen.img_ptr: [%p]\n", cube->screen.img_ptr);
+		return (print_error_with_code(NULL, ERR_BUFFER, CRITICAL));
 
 	cube->screen.addr = mlx_get_data_addr(cube->screen.img_ptr,
 			&cube->screen.bpp, &cube->screen.line_len, &cube->screen.endian);
 	if (!cube->screen.addr)
-		return (print_error_with_code("cub3D: mlx_get_data_addr",
-				"Failed to get image data address\n", CRITICAL));
-	printf("screen.addr: [%p]\n", cube->screen.addr);
+		return (print_error_with_code(NULL, ERR_IMG_ADDR, CRITICAL));
+
 	return (OKI);
 }
 
@@ -79,8 +69,6 @@ int	init_mlx_cube(t_cube *cube)
 // 	init_t_imgs(cube);
 // 	cube->floor_color = 0;
 // 	cube->ceil_color = 0;
-
-
 
 // 	cube->key_w = 0;
 // 	cube->key_s = 0;

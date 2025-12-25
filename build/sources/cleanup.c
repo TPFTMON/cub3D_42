@@ -15,9 +15,8 @@
 void	*free_cube(t_cube *cube);
 void	*free_mlx(t_cube *cube);
 
-/*
- * Purpose: Clean all the memory and destroy mlx components
- */
+
+// Purpose: Clean all the memory and destroy mlx components
 int	ft_cleanup(t_cube *cube)
 {
 	if (!cube)

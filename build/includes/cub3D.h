@@ -62,14 +62,20 @@
 
 // --- Messages ---
 # define ERROR "Error\n"
-# define ERR_CRITICAL "\e[1;31mcritical error\e[0m: memory failure.\n"
+# define ERR_CRITICAL "Error\nCritical: memory failure.\n"
 
 # define ERR_NO_TEX "Error\nParsing: wrong path to North texture\n"
 # define ERR_SO_TEX "Error\nParsing: wrong path to South texture\n"
 # define ERR_EA_TEX "Error\nParsing: wrong path to East texture\n"
 # define ERR_WE_TEX "Error\nParsing: wrong path to West texture\n"
 
+# define ERR_MLX "Error\nCritical: Failed to initialize MiniLibX\n"
+# define ERR_WINDOW "Error\nCritical: Failed to create window\n"
+# define ERR_BUFFER "Error\nCritical: Failed to create image buffer\n"
+# define ERR_IMG_ADDR "Error\nCritical: Failed to get image data address\n"
+
 # define MSG_EXIT "\e[1;32mExiting cub3D... Bye!\e[0m\n"
+
 
 // <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
 

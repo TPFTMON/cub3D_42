@@ -16,7 +16,6 @@ static int	load_one_texture(t_cube *cube, t_img *tex, char *path);
 
 int	init_textures(t_cube *cube)
 {
-	printf("Loading textures...\n");
 	if (load_textures(cube) != OKI)
 		return (CRITICAL);
 	return (OKI);

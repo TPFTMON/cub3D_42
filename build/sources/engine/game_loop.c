@@ -39,8 +39,6 @@ int	game_loop(void *arg)
 	// 3. Put the ready image to the window
 	mlx_put_image_to_window(cube->mlx_ptr, cube->win_ptr, cube->screen.img_ptr, 0, 0);
 
-    // printf("position: x:[%.3f] y:[%.3f]\n", cube->player.pos_x, cube->player.pos_y);
-
     // 4. Update the logic (move player based on relative time and the keys pressed)
 	update_player(cube);
 
@@ -49,7 +47,6 @@ int	game_loop(void *arg)
 
 void	update_player(t_cube *cube)
 {
-    // printf("%d\n", cube->key_w);
 	if (cube->key_w)
 		move_player_forward(cube);
 	if (cube->key_s)
