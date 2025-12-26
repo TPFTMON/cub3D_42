@@ -12,9 +12,8 @@
 
 #include "cub3D.h"
 
-void	*free_cube(t_cube *cube);
-void	*free_mlx(t_cube *cube);
-
+void		*free_cube(t_cube *cube);
+void		*free_mlx(t_cube *cube);
 
 // Purpose: Clean all the memory and destroy mlx components
 int	ft_cleanup(t_cube *cube)
@@ -58,7 +57,6 @@ void	*free_mlx(t_cube *cube)
 
 void	*free_cube(t_cube *cube)
 {
-	// free all the stuff that needs to be freed. Like map or something
 	if (cube->map.grid)
 		free_string_array(cube->map.grid);
 	if (cube)

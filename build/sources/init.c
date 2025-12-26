@@ -29,25 +29,20 @@ int	init_mlx_cube(t_cube *cube)
 {
 	if (!cube)
 		return (print_error_with_code(NULL, "cube is NULL\n", CRITICAL));
-
 	cube->mlx_ptr = mlx_init();
 	if (!cube->mlx_ptr)
 		return (print_error_with_code(NULL, ERR_MLX, CRITICAL));
-
 	cube->win_ptr = mlx_new_window(cube->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
 			"cube");
 	if (!cube->win_ptr)
 		return (print_error_with_code(NULL, ERR_WINDOW, CRITICAL));
-
 	cube->screen.img_ptr = mlx_new_image(cube->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!cube->screen.img_ptr)
 		return (print_error_with_code(NULL, ERR_BUFFER, CRITICAL));
-
 	cube->screen.addr = mlx_get_data_addr(cube->screen.img_ptr,
 			&cube->screen.bpp, &cube->screen.line_len, &cube->screen.endian);
 	if (!cube->screen.addr)
 		return (print_error_with_code(NULL, ERR_IMG_ADDR, CRITICAL));
-
 	return (OKI);
 }
 

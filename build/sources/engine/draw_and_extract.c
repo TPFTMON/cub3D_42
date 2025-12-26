@@ -21,10 +21,8 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 
 	if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HEIGHT)
 		return ;
-
 	offset = ((y * img->line_len) + (x * (img->bpp / 8)));
 	dest = img->addr + offset;
-
 	*(unsigned int *)dest = color;
 }
 
@@ -44,7 +42,6 @@ void	draw_ceiling_floor(t_img *img, int ceil_col, int floor_col)
 		}
 		y++;
 	}
-
 	y = WIN_HEIGHT / 2;
 	while (y < WIN_HEIGHT)
 	{
@@ -59,16 +56,14 @@ void	draw_ceiling_floor(t_img *img, int ceil_col, int floor_col)
 }
 
 // Purpose: Get the color of a specific pixel from a texture structure
-int	get_texture_pixel_color(t_img *tex, int x, int y)
+int	get_pcolor(t_img *tex, int x, int y)
 {
 	int		offset;
 	char	*dest;
 
 	if (x < 0 || x >= tex->width || y < 0 || y >= tex->height)
 		return (0);
-
 	offset = (y * tex->line_len) + (x * (tex->bpp / 8));
 	dest = tex->addr + offset;
-
 	return (*(unsigned int *)dest);
 }

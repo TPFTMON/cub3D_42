@@ -14,34 +14,29 @@
 
 int	game_loop(void *arg)
 {
-	t_cube		*cube;
-    // long long	current_time;
-	double		effective_move_speed;
-	double		effective_rot_speed;
+	t_cube	*cube;
+	double	effective_move_speed;
+	double	effective_rot_speed;
 
+	// long long	current_time;
 	cube = (t_cube *)arg;
-
 	// if (cube->last_frame_time == 0)
-		// cube->last_frame_time = get_time_in_ms();
+	// cube->last_frame_time = get_time_in_ms();
 	// current_time = get_time_in_ms();
-//
+	//
 	// cube->delta_time = ((current_time - cube->last_frame_time) / 1000.0);
-
-	effective_move_speed = cube->player.move_speed/* * cube->delta_time*/;
-	effective_rot_speed = cube->player.rot_speed/* * cube->delta_time*/;
-
-    // 1. Draw the background (ceiling + floor)
-    draw_ceiling_floor(&cube->screen, cube->map.color_ceil, cube->map.color_floor);
-
-    // 2. Do the whole raycasting + textures:
-    perform_raycasting(cube);
-
+	effective_move_speed = cube->player.move_speed /* * cube->delta_time*/;
+	effective_rot_speed = cube->player.rot_speed /* * cube->delta_time*/;
+	// 1. Draw the background (ceiling + floor)
+	draw_ceiling_floor(&cube->screen, cube->map.color_ceil,
+		cube->map.color_floor);
+	// 2. Do the whole raycasting + textures:
+	perform_raycasting(cube);
 	// 3. Put the ready image to the window
-	mlx_put_image_to_window(cube->mlx_ptr, cube->win_ptr, cube->screen.img_ptr, 0, 0);
-
-    // 4. Update the logic (move player based on relative time and the keys pressed)
+	mlx_put_image_to_window(cube->mlx_ptr, cube->win_ptr, cube->screen.img_ptr,
+		0, 0);
+	// 4. Update the logic (move player based on relative time and the keys pressed)
 	update_player(cube);
-
 	return (0);
 }
 
@@ -55,8 +50,8 @@ void	update_player(t_cube *cube)
 		move_player_left(cube);
 	if (cube->key_d)
 		move_player_right(cube);
-    if (cube->key_lar)
-        shift_view_left(cube);
-    if (cube->key_rar)
-        shift_view_right(cube);
+	if (cube->key_lar)
+		shift_view_left(cube);
+	if (cube->key_rar)
+		shift_view_right(cube);
 }

@@ -14,26 +14,22 @@
 
 int	on_destroy(void *arg)
 {
-	t_cube *cube;
+	t_cube	*cube;
 
 	cube = (t_cube *)arg;
-
 	ft_cleanup(cube);
 	printf(MSG_EXIT);
 	exit(EXC_OK);
-
 	return (OKI);
 }
 
 int	on_key_press(int keycode, void *arg)
 {
-	t_cube *cube;
+	t_cube	*cube;
 
 	cube = (t_cube *)arg;
-
 	if (keycode == KEY_ESC)
 		on_destroy(cube);
-
 	if (keycode == KEY_W)
 		cube->key_w = 1;
 	if (keycode == KEY_S)
@@ -46,13 +42,12 @@ int	on_key_press(int keycode, void *arg)
 		cube->key_lar = 1;
 	if (keycode == KEY_RAR)
 		cube->key_rar = 1;
-
 	return (OKI);
 }
 
 int	on_key_release(int keycode, void *arg)
 {
-	t_cube *cube;
+	t_cube	*cube;
 
 	cube = (t_cube *)arg;
 	if (keycode == KEY_W)
@@ -67,17 +62,13 @@ int	on_key_release(int keycode, void *arg)
 		cube->key_lar = 0;
 	if (keycode == KEY_RAR)
 		cube->key_rar = 0;
-
 	return (OKI);
 }
 
 void	init_hooks(t_cube *cube)
 {
 	mlx_hook(cube->win_ptr, 17, 0, on_destroy, cube);
-
-	mlx_hook(cube->win_ptr, 2, (1L<<0), on_key_press, cube);
-
-	mlx_hook(cube->win_ptr, 3, (1L<<1), on_key_release, cube);
-
+	mlx_hook(cube->win_ptr, 2, (1L << 0), on_key_press, cube);
+	mlx_hook(cube->win_ptr, 3, (1L << 1), on_key_release, cube);
 	mlx_loop_hook(cube->mlx_ptr, game_loop, cube);
 }

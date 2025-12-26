@@ -23,13 +23,9 @@ int	main(int argc, char **argv)
 	cube = init_data_cube();
 	if (!cube)
 		return (EXC_CRIT);
-
 	parse_cub_file(cube, argv[1]);
-
-	print_grid(&cube->map);
-
+	// print_grid(&cube->map);
 	init_player(cube);
-
 	setup_mlx_and_engine(cube);
 	return (OKI);
 }
