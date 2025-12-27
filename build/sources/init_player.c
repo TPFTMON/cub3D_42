@@ -12,14 +12,14 @@
 
 #include "cub3D.h"
 
-void		set_player_position(t_cube *cube);
 void		set_player_direction(t_cube *cube);
+void		set_player_position(t_cube *cube);
 
 void	init_player(t_cube *cube)
 {
 	set_player_direction(cube);
 	set_player_position(cube);
-	cube->player.move_speed = 0.02;
+	cube->player.move_speed = 0.025;
 	cube->player.rot_speed = 0.02;
 }
 
