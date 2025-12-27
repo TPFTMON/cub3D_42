@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                                 */
-/*   cub3D.h                                            +      +    +   */
-/*                                                    ++ ++         ++     */
-/*   By abaryshe <abaryshe@student.42.fr>          +#+  ++       +#+        */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created 2025/10/21 215646 by abaryshe          #+#    #+#             */
-/*   Updated 2025/12/16 150446 by abaryshe         ###   ########.fr       */
+/*   Created: 2025/12/27 03:48:40 by abaryshe          #+#    #+#             */
+/*   Updated: 2025/12/27 03:54:42 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-// <<<<<<<<<<<<<<<<<<<<< INCLUDES >>>>>>>>>>>>>>>>>>>>>
+// ================================================================
+//                            INCLUDES
+// ================================================================
 
 # include "libft.h"
 # include "mlx.h"
@@ -26,7 +28,9 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-// <<<<<<<<<<<<<<<<<<<<< MACROS >>>>>>>>>>>>>>>>>>>>>
+// ================================================================
+//                            MACROS
+// ================================================================
 
 // --- General ---
 # define SUCCESS 0
@@ -76,22 +80,23 @@
 
 # define MSG_EXIT "\e[1;32mExiting cub3D... Bye!\e[0m\n"
 
-
-// <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
+// ================================================================
+//                            STRUCTURES
+// ================================================================
 
 typedef enum e_tex
 {
-	NO,    // North
-	SO,    // South
-	WE,    // West
-	EA,    // East
-	TEX_NB // Number of textures
+	NO,
+	SO,
+	WE,
+	EA,
+	TEX_NB
 }				t_tex;
 
 typedef struct s_img
 {
 	void		*img_ptr;
-	char		*addr; // mlx_get_data_addr
+	char		*addr;
 
 	int			bpp;
 	int			line_len;
@@ -103,13 +108,13 @@ typedef struct s_img
 typedef struct s_player
 {
 	double		pos_x;
-	double		pos_y;           // position in map coords (float)
+	double		pos_y;
 
 	double		dir_x;
-	double		dir_y;       // direction vector (normalized)
+	double		dir_y;
 
 	double		plane_x;
-	double		plane_y; // camera plane (perp to dir)
+	double		plane_y;
 
 	double		move_speed;
 	double		rot_speed;
@@ -120,12 +125,12 @@ typedef struct s_player
  */
 typedef struct s_map
 {
-	char		**raw;   // array of strings from parser (keep for error messages)
+	char		**raw;
 
-	int			width;     // max row length
-	int			height;       // number of rows
+	int			width;
+	int			height;
 
-	int			color_floor;     // packed RGB
+	int			color_floor;
 	int			color_ceil;
 
 	char		*texture_paths[TEX_NB];
@@ -133,11 +138,11 @@ typedef struct s_map
 
 	int			spawn_x;
 	int			spawn_y;
-	bool		has_spawn; // will need for cude->player.pos_x/pos_y
+	bool		has_spawn;
 	bool		has_floor;
 	bool		has_ceil;
 
-	char		**grid; // rectangular map (same dims as width x height)
+	char		**grid;
 }				t_map;
 
 typedef struct s_cube
@@ -146,7 +151,7 @@ typedef struct s_cube
 	void		*win_ptr;
 
 	t_img		screen;
-	t_img		textures[TEX_NB]; // NO, SO, WE, EA
+	t_img		textures[TEX_NB];
 
 	t_player	player;
 	t_map		map;
@@ -162,7 +167,7 @@ typedef struct s_cube
 	double		delta_time;
 }				t_cube;
 
-// <<< engine structs >>>
+// --- engine structs ---
 typedef struct s_ray
 {
 	double		camera_x;
@@ -177,7 +182,7 @@ typedef struct s_ray
 	double		delta_dist_x;
 	double		delta_dist_y;
 	double		perp_wall_dist;
-	int			side;            // 0 for NS, 1 for EW
+	int			side;
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
@@ -195,10 +200,11 @@ typedef struct s_render
 	int			color;
 }				t_render;
 
-// <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
+// ================================================================
+//                            FUNCTIONS
+// ================================================================
 
 // -------------------- engine --------------------
-
 // game_loop.c
 int				game_loop(void *arg);
 void			update_player(t_cube *cube);
@@ -237,7 +243,6 @@ void			render_test_flat_color(t_ray *ray, int x, t_cube *cube);
 // void    test_set_player(t_cube *cube);
 
 // -------------------- core --------------------
-
 // init.c
 t_cube			*init_data_cube(void);
 int				init_mlx_cube(t_cube *cube);
@@ -276,12 +281,5 @@ void			parse_config_line(t_map *map, char *line);
 void			require_all_elements(t_map *map);
 void			parse_cub_file(t_cube *cube, const char *path);
 void			parsing_report(void);
-
-// textures.c
-void			load_one(t_cube *cube, t_tex t);
-int				load_textures(t_cube *cube);
-
-void			engine_report(void);
-void			update_player(t_cube *cube);
 
 #endif

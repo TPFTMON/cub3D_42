@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 04:29:11 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/12/16 15:17:00 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/12/27 04:00:25 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,20 @@ int	game_loop(void *arg)
 	t_cube	*cube;
 	double	effective_move_speed;
 	double	effective_rot_speed;
-
 	// long long	current_time;
+
 	cube = (t_cube *)arg;
 	// if (cube->last_frame_time == 0)
 	// cube->last_frame_time = get_time_in_ms();
 	// current_time = get_time_in_ms();
-	//
 	// cube->delta_time = ((current_time - cube->last_frame_time) / 1000.0);
 	effective_move_speed = cube->player.move_speed /* * cube->delta_time*/;
 	effective_rot_speed = cube->player.rot_speed /* * cube->delta_time*/;
-	// 1. Draw the background (ceiling + floor)
 	draw_ceiling_floor(&cube->screen, cube->map.color_ceil,
 		cube->map.color_floor);
-	// 2. Do the whole raycasting + textures:
 	perform_raycasting(cube);
-	// 3. Put the ready image to the window
 	mlx_put_image_to_window(cube->mlx_ptr, cube->win_ptr, cube->screen.img_ptr,
 		0, 0);
-	// 4. Update the logic (move player based on relative time and the keys pressed)
 	update_player(cube);
 	return (0);
 }
