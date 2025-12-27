@@ -15,8 +15,8 @@
 int	game_loop(void *arg)
 {
 	t_cube	*cube;
-	double	effective_move_speed;
-	double	effective_rot_speed;
+	// double	effective_move_speed;
+	// double	effective_rot_speed;
 	// long long	current_time;
 
 	cube = (t_cube *)arg;
