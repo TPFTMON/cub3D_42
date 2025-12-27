@@ -19,8 +19,8 @@ void	init_player(t_cube *cube)
 {
 	set_player_direction(cube);
 	set_player_position(cube);
-	cube->player.move_speed = 0.009;
-	cube->player.rot_speed = 0.009;
+	cube->player.move_speed = 0.01;
+	cube->player.rot_speed = 0.01;
 }
 
 static void	set_north_south(t_cube *cube)

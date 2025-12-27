@@ -207,7 +207,8 @@ typedef struct s_render
 // -------------------- engine --------------------
 // game_loop.c
 int				game_loop(void *arg);
-void			update_player(t_cube *cube);
+void			update_player(t_cube *cube, double effective_move_speed, double effective_rot_speed);
+// void			update_player(t_cube *cube);
 
 // hooks.c
 void			init_hooks(t_cube *cube);
@@ -221,14 +222,20 @@ void			draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
 int				get_pcolor(t_img *tex, int x, int y);
 
 // player_move.c
-void			move_player_forward(t_cube *cube);
-void			move_player_backward(t_cube *cube);
-void			move_player_left(t_cube *cube);
-void			move_player_right(t_cube *cube);
+void			move_player_forward(t_cube *cube, double effective_move_speed);
+void			move_player_backward(t_cube *cube, double effective_move_speed);
+void			move_player_left(t_cube *cube, double effective_move_speed);
+void			move_player_right(t_cube *cube, double effective_move_speed);
+// void			move_player_forward(t_cube *cube);
+// void			move_player_backward(t_cube *cube);
+// void			move_player_left(t_cube *cube);
+// void			move_player_right(t_cube *cube);
 
 // player_view.c
-void			shift_view_left(t_cube *cube);
-void			shift_view_right(t_cube *cube);
+void			shift_view_left(t_cube *cube, double effective_rot_speed);
+void			shift_view_right(t_cube *cube, double effective_rot_speed);
+// void			shift_view_left(t_cube *cube);
+// void			shift_view_right(t_cube *cube);
 
 // textures.c
 void			render_wall_strip(t_ray *ray, int x, t_cube *cube);
