@@ -23,7 +23,7 @@ int	game_loop(void *arg)
 	if (cube->last_frame_time == 0)
 		cube->last_frame_time = get_time_in_ms();
 	current_time = get_time_in_ms();
-	cube->delta_time = ((current_time - cube->last_frame_time) / 1000.0);
+	cube->delta_time = ((current_time - cube->last_frame_time) / 2.0);
 	effective_move_speed = cube->player.move_speed * cube->delta_time;
 	effective_rot_speed = cube->player.rot_speed * cube->delta_time;
 	draw_ceiling_floor(&cube->screen, cube->map.color_ceil,
@@ -32,8 +32,6 @@ int	game_loop(void *arg)
 	mlx_put_image_to_window(cube->mlx_ptr, cube->win_ptr, cube->screen.img_ptr,
 		0, 0);
 	update_player(cube, effective_move_speed, effective_rot_speed);
-	// cube->player.move_speed = 0.009;
-	// cube->player.rot_speed = 0.009;
 	cube->last_frame_time = get_time_in_ms();
 	return (0);
 }

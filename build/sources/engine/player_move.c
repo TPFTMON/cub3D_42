@@ -18,6 +18,8 @@ void	move_player_forward(t_cube *cube, double effective_move_speed)
 	double	new_x;
 	double	new_y;
 
+	if (cube->key_a || cube->key_d)
+		effective_move_speed /= 2;
 	speed = effective_move_speed;
 	new_x = cube->player.pos_x + cube->player.dir_x * speed;
 	new_y = cube->player.pos_y + cube->player.dir_y * speed;
@@ -33,6 +35,8 @@ void	move_player_backward(t_cube *cube, double effective_move_speed)
 	double	new_x;
 	double	new_y;
 
+	if (cube->key_a || cube->key_d)
+		effective_move_speed /= 2;
 	speed = effective_move_speed;
 	new_x = cube->player.pos_x - cube->player.dir_x * speed;
 	new_y = cube->player.pos_y - cube->player.dir_y * speed;
