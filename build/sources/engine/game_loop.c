@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 04:29:11 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/12/27 04:00:25 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/12/27 12:54:44 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	game_loop(void *arg)
 	// cube->last_frame_time = get_time_in_ms();
 	// current_time = get_time_in_ms();
 	// cube->delta_time = ((current_time - cube->last_frame_time) / 1000.0);
-	effective_move_speed = cube->player.move_speed /* * cube->delta_time*/;
-	effective_rot_speed = cube->player.rot_speed /* * cube->delta_time*/;
+	// effective_move_speed = cube->player.move_speed /* * cube->delta_time*/;
+	// effective_rot_speed = cube->player.rot_speed /* * cube->delta_time*/;
 	draw_ceiling_floor(&cube->screen, cube->map.color_ceil,
 		cube->map.color_floor);
 	perform_raycasting(cube);
