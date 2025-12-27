@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void	parse_cub_file(t_cube *cube, const char *path)
+bool	parse_cub_file(t_cube *cube, const char *path)
 {
 	int	fd;
 	char	*line;
@@ -21,16 +21,19 @@ void	parse_cub_file(t_cube *cube, const char *path)
 	int		capacity;//dynamic raw map storage
 
 	if (!cube || !path)
-		handle_error("Parser: internal null in parse_cub_file");
+		return (parser_error(cube, "Parser: internal null in parse_cub_file"));
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		handle_error("Parser: failed to open .cub file");
+		return (parser_error(cube, "Parser: failed to open .cub file"));
 	in_map = false;
 	row = 0;
 	capacity = 16;
 	cube->map.raw = (char **)ft_calloc(capacity, sizeof(char *));
 	if (!cube->map.raw)
-		handle_error("Parser: malloc failed for map raw");
+	{
+		close(fd);
+		return (parser_error(cube, "Parser: malloc failed for map raw"));
+	}
 	cube->map.width = 0;
 	cube->map.height = 0;
 	while ((line = get_next_line(fd)) != NULL)
@@ -41,7 +44,13 @@ void	parse_cub_file(t_cube *cube, const char *path)
 				in_map = true;
 			else
 			{
-				parse_config_line(&cube->map, line);
+				if (!parse_config_line(cube, &cube->map, line))
+				{
+					free(line);
+					close (fd);
+					parser_cleanup_map(&cube->map);
+					return (false);
+				}
 				free(line);
 				continue ;
 			}
@@ -51,13 +60,17 @@ void	parse_cub_file(t_cube *cube, const char *path)
 		{
 			free(line);
 			close(fd);
-			handle_error("Parser: empty line inside map");
+			parser_error(cube, "Parser: empty line inside map");
+			parser_cleanup_map(&cube->map);
+			return (false);
 		}
 		if (!looks_like_map_line(line))
 		{
 			free(line);
 			close(fd);
-			handle_error("Parser:non-map line after map started");
+			parser_error(cube, "Parser:non-map line after map started");
+			parser_cleanup_map(&cube->map);
+			return (false);
 		}
 		if (row + 1 >= capacity)
 		{
@@ -70,7 +83,9 @@ void	parse_cub_file(t_cube *cube, const char *path)
 			{
 				free(line);
 				close(fd);
-				handle_error("Parser: malloc failed growing raw map");
+				parser_error(cube, "Parser: malloc failed growing raw map");
+				parser_cleanup_map(&cube->map);
+				return (false);
 			}
 			i = 0;
 			while (i < row)
@@ -81,13 +96,28 @@ void	parse_cub_file(t_cube *cube, const char *path)
 			free(cube->map.raw);
 			cube->map.raw = new_raw;
 		}
-		parse_map(&cube->map, line, row);
+		if (!parse_map(cube, &cube->map, line, row))
+		{
+			free(line);
+			close(fd);
+			parser_cleanup_map(&cube->map);
+			return (false);
+		}
 		row++;
 		free(line);
 	}
 	close(fd);
 	cube->map.height = row;
-	require_all_elements(&cube->map);
+	if (!require_all_elements(cube, &cube->map))
+	{
+		parser_cleanup_map(&cube->map);
+		return (false);
+	}
 	//print_grid(&cube->map);
-	validate_map(&cube->map);
+	if (!validate_map(cube, &cube->map))
+	{
+		parser_cleanup_map(&cube->map);
+		return (false);
+	}
+	return (true);
 }

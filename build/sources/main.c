@@ -23,8 +23,14 @@ int	main(int argc, char **argv)
 	cube = init_data_cube();
 	if (!cube)
 		return (EXC_CRIT);
-	parse_cub_file(cube, argv[1]);
-	// print_grid(&cube->map);
+	if (!parse_cub_file(cube, argv[1]))
+	{
+		parser_perror_and_setexit(cube);
+		ft_cleanup(cube);
+		return (EXC_PARS);
+	}
+	//printf("has_spawn=%d spawn=(%d, %d) dir=%d\n", cube->map.has_spawn, cube->map.spawn_x, cube->map.spawn_y, cube->map.player_direction);
+	print_grid(&cube->map);
 	init_player(cube);
 	setup_mlx_and_engine(cube);
 	return (OKI);

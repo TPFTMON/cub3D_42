@@ -19,20 +19,22 @@ char	cell(t_map *m, int y, int x)
 	return (m->grid[y][x]);
 }
 
-void	build_grid(t_map *map)
+bool	build_grid(t_cube *cube, t_map *map)
 {
 	int	x;
 	int	y;
 
+	if (!cube || !map)
+		return (parser_error(cube, "Parser: internal null in build_grid"));
 	map->grid = (char **)ft_calloc(map->height + 1, sizeof(char *));
 	if (!map->grid)
-		handle_error("Parser: malloc failed building grid");
+		return (parser_error(cube, "Parser: malloc failed building grid"));
 	y = 0;
 	while(y < map->height)
 	{
 		map->grid[y] = (char *)ft_calloc(map->width + 1, sizeof(char));
 		if (!map->grid[y])
-			handle_error("Parser: malloc failed building grid row");
+			return (parser_error(cube, "Parser: malloc failed building grid row"));
 		x = 0;
 		while (x < map->width)
 		{
@@ -46,40 +48,45 @@ void	build_grid(t_map *map)
 		y++;
 	}
 	map->grid[map->height] = NULL;
+	return (true);
 }
-void	validate_map(t_map *map)
+bool	validate_map(t_cube *cube, t_map *map)
 {
 	int	y;
 	int	x;
 
 	//print_grid(map);
 	//printf("validate map\n");
-	if (!map)
-		handle_error("Parser: internal null in validate_map");
+	if (!cube || !map)
+		return (parser_error(cube, "Parser: internal null in validate_map"));
 	if (map->height <= 0 || map->width <= 0)
-		handle_error("Parser:empty map");
+		return (parser_error(cube, "Parser:empty map"));
 	if (!map->has_spawn)
-		handle_error("Parser: missing player spawn in map");
+		return (parser_error(cube, "Parser: missing player spawn in map"));
 	if (!map->grid)
-		build_grid(map);
+		if (!build_grid(cube, map))
+			return (false);
 	y = 0;
 	while (y < map->height)
 	{
 		x = 0;
 		while (x < map->width)
 		{
-			if (map->grid[y][x] == '0')
+			if (map->grid[y][x] == '0' || map->grid[y][x] == 'N' || map->grid[y][x] == 'S'
+				|| map->grid[y][x] == 'E' || map->grid[y][x] == 'W')
 			{
 				if (y == 0 || x == 0 || y == map->height - 1 || x == map->width - 1)
-					handle_error("Parser:map not closed(open on border)");
+					return (parser_error(cube, "Parser:map not closed(open on border)"));
 				if (cell(map, y - 1, x) == ' ' || cell(map, y + 1, x) == ' ' ||
 							cell(map, y, x - 1) == ' ' || cell(map, y, x+ 1) == ' ')
-					handle_error("Parser: map not closed(walkable touches void)");
+					return (parser_error(cube, "Parser: map not closed(walkable touches void)"));
 			}
-			//else if (map->grid[y][x] != '1' && map->grid[y][x] != ' ')
-			//	handle_error("Parser: unexpected cell in final grid");
+			else if (map->grid[y][x] != '1' && map->grid[y][x] != ' ' && map->grid[y][x] != 'N'
+					&& map->grid[y][x] != 'S' && map->grid[y][x] != 'E' && map->grid[y][x] != 'W')
+				return (parser_error(cube, "Parser: unexpected cell in final grid"));
 			x++;
 		}
 		y++;
 	}
+	return (true);
 }

@@ -374,42 +374,43 @@ bool	looks_like_map_line(char *line)
 	return (has_tile);
 }
 
-void	parse_config_line(t_map *map, char *line)
+bool	parse_config_line(t_cube *cube, t_map *map, char *line)
 {
 	char	*p;
 
 	trim_newline(line);
 	p = skip_spaces(line);
 	if (*p == '\0')
-		return ;
+		return (true);
 	if (starts_with_id_local(p, "NO") && ft_isspace((unsigned char)p[2]))
-		return (parse_texture(map, line, NO));
+		return (parse_texture(cube, map, line, NO));
 	if (starts_with_id_local(p, "SO") && ft_isspace((unsigned char)p[2]))
-		return (parse_texture(map, line, SO));
+		return (parse_texture(cube, map, line, SO));
 	if (starts_with_id_local(p, "WE") && ft_isspace((unsigned char)p[2]))
-		return (parse_texture(map, line, WE));
+		return (parse_texture(cube, map, line, WE));
 	if (starts_with_id_local(p, "EA") && ft_isspace((unsigned char)p[2]))
-		return (parse_texture(map, line, EA));
+		return (parse_texture(cube, map, line, EA));
 	if (*p == 'F' && ft_isspace((unsigned char)p[1]))
-		return (parse_floor_ceiling_colors(map, line));
+		return (parse_floor_ceiling_colors(cube, map, line));
 	if (*p == 'C' && ft_isspace((unsigned char)p[1]))
-		return (parse_floor_ceiling_colors(map, line));
-	handle_error("Parser: unknown/invalid line in config section");
+		return (parse_floor_ceiling_colors(cube, map, line));
+	return (parser_error(cube, "Parser: unknown/invalid line in config section"));
 }
 
-void	require_all_elements(t_map *map)
+bool	require_all_elements(t_cube *cube, t_map *map)
 {
 	if (!map->texture_paths[NO] || !map->texture_paths[SO]
 			|| !map->texture_paths[WE] || !map->texture_paths[EA])
-		handle_error("Parser: missing texture path(NO/SO/WE/EA)");
+		return (parser_error(cube, "Parser: missing texture path(NO/SO/WE/EA)"));
 	if (!map->has_floor)
-		handle_error("Parser: missing floor color (F)");
+		return (parser_error(cube, "Parser: missing floor color (F)"));
 	if (!map->has_ceil)
-		handle_error("Parser: missing ceiling color (C)");
+		return (parser_error(cube, "Parser: missing ceiling color (C)"));
 	if (map->height <= 0)
-		handle_error("Parser: missing map");
+		return (parser_error(cube, "Parser: missing map"));
 	if (!map->has_spawn)
-		handle_error("Parser: missing player spawn (N/S/E/W)");
+		return (parser_error(cube, "Parser: missing player spawn (N/S/E/W)"));
+	return (true);
 }
 
 /*void	parse_cub_file(t_cube *cube, const char *path)

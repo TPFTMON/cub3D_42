@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3D.h"
+ #include "cub3D.h"
 
 // void	test_ALL_engine(t_cube *cube){
 // 	test_set_ceil_floor(cube);
@@ -72,25 +72,25 @@
 //     map->grid[height / 2][width / 2] = '1'; // single center wall
 // }
 
-// void    print_grid(t_map *map){
-//     if (!map->raw)
-//         return ;
-//     for (int i = 0; map->raw[i]; i++){
-//         for (int j = 0; map->raw[i][j]; j++){
-//             printf("%c", map->raw[i][j]);
-//         }
-//         printf("\n");
-//     }
-//     printf("---\n");
-//     if (!map->grid)
-//         return ;
-//     for (int i = 0; map->grid[i]; i++){
-//         for (int j = 0; map->grid[i][j]; j++){
-//             printf("%c", map->grid[i][j]);
-//         }
-//         printf("\n");
-//     }
-// }
+ void    print_grid(t_map *map){
+     if (!map->raw)
+         return ;
+     for (int i = 0; map->raw[i]; i++){
+         for (int j = 0; map->raw[i][j]; j++){
+             printf("%c", map->raw[i][j]);
+         }
+         printf("\n");
+     }
+     printf("---\n");
+     if (!map->grid)
+         return ;
+     for (int i = 0; map->grid[i]; i++){
+         for (int j = 0; map->grid[i][j]; j++){
+             printf("%c", map->grid[i][j]);
+         }
+         printf("\n");
+     }
+ }
 
 // void    test_set_position_on_grid(t_cube *cube, int x, int y){
 // 	cube->map.player_direction = NO;

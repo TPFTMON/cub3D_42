@@ -12,14 +12,39 @@
 
 #include "cub3D.h"
 
-int	parse_u8(char **p)
+bool parse_u8(t_cube *cube, char **p, int *out)
+{
+    long val;
+    char *s;
+
+    if (!p || !*p || !out)
+        return parser_error(cube, "Parser: internal null in parse_u8");
+
+    s = *p;
+    if (!s || !ft_isdigit((unsigned char)*s))
+        return parser_error(cube, "Parser: expected a number in color");
+
+    val = 0;
+    while (*s && ft_isdigit((unsigned char)*s))
+    {
+        val = val * 10 + (*s - '0');
+        if (val > 255)
+            return parser_error(cube, "Parser: color value out of range (0-255)");
+        s++;
+    }
+    *p = s;
+    *out = (int)val;
+    return true;
+}
+
+/*bool	parse_u8(t_cube *cube, char **p, int *out)
 {
 	long	val;
 	char	*s;
 
 	s = *p;
 	if (!s || !ft_isdigit((unsigned char)*s))
-		handle_error("Parser: expected a number in color");
+		return (parser_error(cube, "Parser: expected a number in color"));
 	val = 0;
 	while (*s && ft_isdigit((unsigned char)*s))
 	{
@@ -30,7 +55,7 @@ int	parse_u8(char **p)
 	}
 	*p = s;
 	return ((int)val);
-}
+}*/
 
 /*static char parse_color_header(char *line, char *out_kind)
 {
@@ -103,7 +128,7 @@ void	parse_floor_ceiling_colors(t_map *map, char *line)
     apply_parsed_colors(map, kind, color);
 }*/
 
-void	parse_floor_ceiling_colors(t_map *map, char *line)
+bool	parse_floor_ceiling_colors(t_cube *cube, t_map *map, char *line)
 {
 	char *p;
 	char	kind;
@@ -112,36 +137,42 @@ void	parse_floor_ceiling_colors(t_map *map, char *line)
 	int	b;
 
 	if (!map || !line)
-		handle_error("Parser: internal null in parse_floor_ceiling_colors");
+		return (parser_error(cube, "Parser: internal null in parse_floor_ceiling_colors"));
 	trim_newline(line);
 	p = skip_spaces(line);
 	kind = *p;
 	if (kind != 'F' && kind != 'C')
-		handle_error("Parser: invalid color identif (F or C)");
+		return (parser_error(cube, "Parser: invalid color identif (F or C)"));
 	p++;
 	if (!ft_isspace((unsigned char )*p))
-		handle_error("Parser: invalid color format (missing space)");
+		return (parser_error(cube, "Parser: invalid color format (missing space)"));
 	p = skip_spaces(p);
-	r = parse_u8(&p);
-	expect_char(&p, ',');
-	g = parse_u8(&p);
-	expect_char(&p, ',');
-	b = parse_u8(&p);
+	if (!parse_u8(cube, &p, &r))
+		return (false);
+	if (!expect_char(cube, &p, ','))
+		return (false);
+	if (!parse_u8(cube, &p, &g))
+		return (false);
+	if (!expect_char(cube, &p, ','))
+		return (false);
+	if (!parse_u8(cube, &p, &b))
+		return (false);
 	p = skip_spaces(p);
 	if (p && *p != '\0')
-		handle_error("Parser: extra tokens after color");
+		return (parser_error(cube, "Parser: extra tokens after color"));
 	if (kind == 'F')
 	{
 		if (map->has_floor)
-			handle_error("Parser: duplicate floor color");
+			return (parser_error(cube, "Parser: duplicate floor color"));
 		map->color_floor = pack_rgb(r, g, b);
 		map->has_floor = true;
 	}
 	else
 	{
 		if (map->has_ceil)
-			handle_error("Parser: duplicate ceiling color");
+			return (parser_error(cube, "Parser: duplicate ceiling color"));
 		map->color_ceil = pack_rgb(r, g, b);
 		map->has_ceil = true;
 	}
+	return (true);
 }

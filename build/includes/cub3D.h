@@ -165,6 +165,9 @@ typedef struct s_cube
 
 	long long	last_frame_time;
 	double		delta_time;
+
+	int			parse_err;
+	char		parse_errmsg[256];
 }				t_cube;
 
 // --- engine structs ---
@@ -232,6 +235,7 @@ void			shift_view_right(t_cube *cube);
 
 // textures.c
 void			render_wall_strip(t_ray *ray, int x, t_cube *cube);
+void			free_texture_paths(t_map *map);
 
 // testing engine:
 void			test_ALL_engine(t_cube *cube);
@@ -259,6 +263,7 @@ int				ft_cleanup(t_cube *cube);
 
 // -------------------- parsing --------------------
 void			handle_error(const char *msg);
+void			free_raw_map(t_map *map);
 char			*skip_spaces(char *s);
 void			trim_newline(char *s);
 int				is_only_spaces(const char *s);
@@ -266,20 +271,24 @@ int				is_valid_map_char(char c);
 int				pack_rgb(int r, int g, int b);
 int				starts_with_id(const char *s, const char *id);
 const char		*text_id(t_tex t);
-void			parse_texture(t_map *map, char *line, t_tex texture_type);
-int				parse_u8(char **p);
-void			expect_char(char **p, char c);
-void			parse_floor_ceiling_colors(t_map *map, char *line);
+bool			parse_texture(t_cube *cube, t_map *map, char *line, t_tex texture_type);
+bool			parse_u8(t_cube *cube, char **p, int *out);
+bool			expect_char(t_cube *cube, char **p, char c);
+bool			parse_floor_ceiling_colors(t_cube *cube, t_map *map, char *line);
 void			set_spawn(t_map *map, int x, int y, char c);
-void			parse_map(t_map *map, char *line, int row);
+bool			parse_map(t_cube *cube, t_map *map, char *line, int row);
 char			cell(t_map *m, int y, int x);
-void			build_grid(t_map *map);
-void			validate_map(t_map *map);
+bool			build_grid(t_cube *cube, t_map *map);
+bool			validate_map(t_cube *cube, t_map *map);
 bool			starts_with_id_local(const char *s, const char *id);
 bool			looks_like_map_line(char *line);
-void			parse_config_line(t_map *map, char *line);
-void			require_all_elements(t_map *map);
-void			parse_cub_file(t_cube *cube, const char *path);
+bool			parse_config_line(t_cube *cube, t_map *map, char *line);
+bool			require_all_elements(t_cube *cube, t_map *map);
+bool			parse_cub_file(t_cube *cube, const char *path);
 void			parsing_report(void);
+
+bool			parser_error(t_cube *cube, const char *msg);
+void			parser_perror_and_setexit(t_cube *cube);
+void			parser_cleanup_map(t_map *map);
 
 #endif

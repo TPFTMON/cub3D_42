@@ -38,7 +38,52 @@ const char	*text_id(t_tex t)
 	return ("");
 }
 
-void	parse_texture(t_map *map, char *line, t_tex texture_type)
+bool parse_texture(t_cube *cube, t_map *map, char *line, t_tex texture_type)
+{
+    char *p;
+    char *path;
+    const char *id;
+    size_t len;
+
+    if (!cube || !map || !line)
+        return parser_error(cube, "Parser: internal null in parse_texture");
+
+    trim_newline(line);
+    p = skip_spaces(line);
+    id = text_id(texture_type);
+
+    if (!starts_with_id(p, id) || !ft_isspace((unsigned char)p[2]))
+        return parser_error(cube, "Parser: invalid texture identifier/format");
+
+    if (map->texture_paths[texture_type] != NULL)
+        return parser_error(cube, "Parser: duplicate texture definition");
+
+    p += 2;
+    p = skip_spaces(p);
+    if (!p || *p == '\0')
+        return parser_error(cube, "Parser: missing texture path");
+
+    len = 0;
+    while (p[len] && !ft_isspace((unsigned char)p[len]))
+        len++;
+
+    path = ft_substr(p, 0, len);
+    if (!path)
+        return parser_error(cube, "Parser: malloc failed for texture path");
+
+    p += len;
+    p = skip_spaces(p);
+    if (p && *p != '\0')
+    {
+        free(path);
+        return parser_error(cube, "Parser: extra tokens after texture path");
+    }
+
+    map->texture_paths[texture_type] = path;
+    return true;
+}
+
+/*bool	parse_texture(t_cube *cube, t_map *map, char *line, t_tex texture_type)
 {
 	char		*p;
 	char		*path;
@@ -74,4 +119,4 @@ void	parse_texture(t_map *map, char *line, t_tex texture_type)
 		}
 	}
 	map->texture_paths[texture_type] = path;
-}
+}*/

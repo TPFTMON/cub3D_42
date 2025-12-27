@@ -57,9 +57,13 @@ void	*free_mlx(t_cube *cube)
 
 void	*free_cube(t_cube *cube)
 {
+	if (!cube)
+		return (NULL);
 	if (cube->map.grid)
 		free_string_array(cube->map.grid);
-	if (cube)
-		free(cube);
+	free_raw_map(&cube->map);
+	free_texture_paths(&cube->map);
+	//if (cube)
+	free(cube);
 	return (NULL);
 }

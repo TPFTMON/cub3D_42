@@ -78,24 +78,24 @@ void	parse_map(t_map *map, char *line, int row)
         map->height = row + 1;//check
 }*/
 
-void	parse_map(t_map *map, char *line, int row)
+bool	parse_map(t_cube *cube, t_map *map, char *line, int row)
 {
 	char *dup;
 	int	x;
 
-	if (!map || !line)
-		handle_error("Parser: internal null in parse_map");
+	if (!cube || !map || !line)
+		return (parser_error(cube, "Parser: internal null in parse_map"));
 	trim_newline(line);
 	dup = ft_strdup(line);
 	if (!dup)
-		handle_error("Parser: malloc failed duplicating map line");
+		return (parser_error(cube, "Parser: malloc failed duplicating map line"));
 	x = 0;
 	while (dup[x])
 	{
 		if (!is_valid_map_char(dup[x]))
 		{
 			free(dup);
-			handle_error("PARSER: invalid char in map");
+			return (parser_error(cube, "PARSER: invalid char in map"));
 		}
 		if (dup[x] == 'N' || dup[x] == 'S' || dup[x] == 'E' || dup[x] == 'W')
 		{
@@ -109,4 +109,5 @@ void	parse_map(t_map *map, char *line, int row)
 		map->width = x;
 	if (row + 1 > map->height)//debatable
 		map->height = row + 1;
+	return (true);
 }
