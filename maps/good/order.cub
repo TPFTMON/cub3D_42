@@ -1,10 +1,11 @@
-NO maps/textures/basic/north.xpm
-SO maps/textures/basic/south.xpm
-WE maps/textures/basic/west.xpm
-EA maps/textures/basic/east.xpm
+C 225,30,0
+F 220,100,0
 
-C 53,252,199
-F 134,31,213
+EA maps/textures/basic/east.xpm
+SO maps/textures/basic/south.xpm
+
+WE maps/textures/basic/west.xpm
+NO maps/textures/basic/north.xpm
 
 1111111111
 1000000001

@@ -18,7 +18,8 @@ int	main(int argc, char **argv)
 {
 	t_cube	*cube;
 
-	if (argc != 2)
+	// WE DON'T HAVE A CHECK FOR NOT A .cub FILE
+	if (argc != 2 || ft_strcmp(".cub", ft_strrchr(argv[1], '.')))
 		handle_error("Correct format: ./cub3D <map.cub>");
 	cube = init_data_cube();
 	if (!cube)
