@@ -6,118 +6,92 @@
 /*   By: imirzaev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 15:16:43 by imirzaev          #+#    #+#             */
-/*   Updated: 2025/12/23 15:16:47 by imirzaev         ###   ########.fr       */
+/*   Updated: 2025/12/28 17:20:48 by imirzaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-bool	parse_cub_file(t_cube *cube, const char *path)
+bool	parse_fail(t_cube *cube, int fd, char *line, const char *msg)
 {
-	int	fd;
-	char	*line;
-	bool	in_map;
-	int		row;
-	int		capacity;//dynamic raw map storage
+	if (line)
+		free(line);
+	if (fd >= 0)
+		close(fd);
+	if (msg)
+		parser_error(cube, msg);
+	parser_cleanup_map(&cube->map);
+	gnl_clear();
+	return (false);
+}
 
-	if (!cube || !path)
+bool	parse_open_and_init(t_cube *cube, const char *path,
+		int *fd, int *capacity)
+{
+	if (!cube || !path || !fd || !capacity)
 		return (parser_error(cube, "Parser: internal null in parse_cub_file"));
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
+	*fd = open(path, O_RDONLY);
+	if (*fd < 0)
 		return (parser_error(cube, "Parser: failed to open .cub file"));
-	in_map = false;
-	row = 0;
-	capacity = 16;
-	cube->map.raw = (char **)ft_calloc(capacity, sizeof(char *));
+	*capacity = 16;
+	cube->map.raw = (char **)ft_calloc(*capacity, sizeof(char *));
 	if (!cube->map.raw)
 	{
-		close(fd);
+		close(*fd);
+		*fd = -1;
 		return (parser_error(cube, "Parser: malloc failed for map raw"));
 	}
 	cube->map.width = 0;
 	cube->map.height = 0;
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		if (!in_map)
-		{
-			if (looks_like_map_line(line))
-				in_map = true;
-			else
-			{
-				if (!parse_config_line(cube, &cube->map, line))
-				{
-					free(line);
-					close (fd);
-					parser_cleanup_map(&cube->map);
-					return (false);
-				}
-				free(line);
-				continue ;
-			}
-		}
-		trim_newline(line);
-		if (*skip_spaces(line) == '\0')
-		{
-			free(line);
-			close(fd);
-			parser_error(cube, "Parser: empty line inside map");
-			parser_cleanup_map(&cube->map);
-			return (false);
-		}
-		if (!looks_like_map_line(line))
-		{
-			free(line);
-			close(fd);
-			parser_error(cube, "Parser:non-map line after map started");
-			parser_cleanup_map(&cube->map);
-			return (false);
-		}
-		if (row + 1 >= capacity)
-		{
-			char	**new_raw;
-			int	i;
+	return (true);
+}
 
-			capacity *= 2;
-			new_raw = (char **)ft_calloc(capacity, sizeof(char *));
-			if (!new_raw)
-			{
-				free(line);
-				close(fd);
-				parser_error(cube, "Parser: malloc failed growing raw map");
-				parser_cleanup_map(&cube->map);
-				return (false);
-			}
-			i = 0;
-			while (i < row)
-			{
-				new_raw[i] = cube->map.raw[i];
-				i++;
-			}
-			free(cube->map.raw);
-			cube->map.raw = new_raw;
-		}
-		if (!parse_map(cube, &cube->map, line, row))
-		{
-			free(line);
-			close(fd);
-			parser_cleanup_map(&cube->map);
-			return (false);
-		}
-		row++;
-		free(line);
-	}
-	close(fd);
-	cube->map.height = row;
-	if (!require_all_elements(cube, &cube->map))
+bool	handle_config_section(t_cube *cube, int fd, char *line, bool *in_map)
+{
+	if (looks_like_map_line(line))
 	{
-		parser_cleanup_map(&cube->map);
-		return (false);
+		*in_map = true;
+		return (true);
 	}
-	//print_grid(&cube->map);
-	if (!validate_map(cube, &cube->map))
+	if (!parse_config_line(cube, &cube->map, line))
+		return (parse_fail(cube, fd, line, NULL));
+	free(line);
+	return (true);
+}
+
+bool	validate_map_line_or_fail(t_cube *cube, int fd, char *line)
+{
+	trim_newline(line);
+	if (*skip_spaces(line) == '\0')
+		return (parse_fail(cube, fd, line, "Parser: empty line inside map"));
+	if (!looks_like_map_line(line))
+		return (parse_fail(cube, fd, line,
+				"Parser:non-map line after map started"));
+	return (true);
+}
+
+bool	ensure_raw_capacity(t_cube *cube, t_parse_ctx *ctx)
+{
+	char	**new_raw;
+	int	i;
+
+	if (!cube || !ctx || !ctx->capacity)
+		return (parser_error(cube,
+				"Parser: internal null in ensure_raw_capacity"));
+	if (ctx->row + 1 < *(ctx->capacity))
+		return (true);
+	*(ctx->capacity) *= 2;
+	new_raw = (char **)ft_calloc(*(ctx->capacity), sizeof(char *));
+	if (!new_raw)
+		return (parse_fail(cube, ctx->fd, ctx->line,
+				"Parser: malloc failed growing raw map"));
+	i = 0;
+	while (i < ctx->row)
 	{
-		parser_cleanup_map(&cube->map);
-		return (false);
+		new_raw[i] = cube->map.raw[i];
+		i++;
 	}
+	free(cube->map.raw);
+	cube->map.raw = new_raw;
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: imirzaev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 15:16:28 by imirzaev          #+#    #+#             */
-/*   Updated: 2025/12/23 15:16:29 by imirzaev         ###   ########.fr       */
+/*   Updated: 2025/12/28 17:15:03 by imirzaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	is_only_spaces(const char *s)
 
 int	is_valid_map_char(char c)
 {
-	return (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	return (c == '0' || c == '1' || c == ' ' || c == 'N'
+		|| c == 'S' || c == 'E' || c == 'W');
 }
 
 int	pack_rgb(int r, int g, int b)
