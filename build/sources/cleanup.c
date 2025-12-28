@@ -61,11 +61,8 @@ void	*free_cube(t_cube *cube)
 		return (NULL);
 	if (cube->map.grid)
 		free_string_array(cube->map.grid);
-	if (&cube->map)
-	{
-		free_raw_map(&cube->map);
-		free_texture_paths(&cube->map);
-	}
+	free_raw_map(&cube->map);
+	free_texture_paths(&cube->map);
 	if (cube)
 		free(cube);
 	return (NULL);

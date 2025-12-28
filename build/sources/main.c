@@ -29,7 +29,6 @@ int	main(int argc, char **argv)
 		ft_cleanup(cube);
 		return (EXC_PARS);
 	}
-	print_grid(&cube->map);
 	init_player(cube);
 	setup_mlx_and_engine(cube);
 	return (OKI);
