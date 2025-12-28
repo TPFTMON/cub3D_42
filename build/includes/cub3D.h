@@ -145,6 +145,38 @@ typedef struct s_map
 	char		**grid;
 }				t_map;
 
+typedef struct s_rgb
+{
+	int			r;
+	int			g;
+	int			b;
+}				t_rgb;
+
+typedef struct s_spawn
+{
+	int			x;
+	int			y;
+	char		dir;
+}				t_spawn;
+
+typedef struct s_texparse
+{
+	t_map		*map;
+	char		*line;
+	t_tex		type;
+	char		*p_out;
+}				t_texparse;
+
+typedef struct	s_parse_ctx
+{
+	int			fd;
+	char		*line;
+	int			row;
+	int			*capacity;
+	bool		in_map;
+}				t_parse_ctx;
+
+
 typedef struct s_cube
 {
 	void		*mlx_ptr;
@@ -282,7 +314,7 @@ bool			parse_texture(t_cube *cube, t_map *map, char *line, t_tex texture_type);
 bool			parse_u8(t_cube *cube, char **p, int *out);
 bool			expect_char(t_cube *cube, char **p, char c);
 bool			parse_floor_ceiling_colors(t_cube *cube, t_map *map, char *line);
-void			set_spawn(t_map *map, int x, int y, char c);
+bool			set_spawn(t_cube *cube, t_map *map, t_spawn spawn);
 bool			parse_map(t_cube *cube, t_map *map, char *line, int row);
 char			cell(t_map *m, int y, int x);
 bool			build_grid(t_cube *cube, t_map *map);
@@ -292,10 +324,17 @@ bool			looks_like_map_line(char *line);
 bool			parse_config_line(t_cube *cube, t_map *map, char *line);
 bool			require_all_elements(t_cube *cube, t_map *map);
 bool			parse_cub_file(t_cube *cube, const char *path);
-void			parsing_report(void);
-
 bool			parser_error(t_cube *cube, const char *msg);
 void			parser_perror_and_setexit(t_cube *cube);
 void			parser_cleanup_map(t_map *map);
+void			gnl_clear(void);
+bool			parse_fail(t_cube *cube, int fd, char *line, const char *msg);
+bool			parse_open_and_init(t_cube *cube, const char *path, int *fd, int *capacity);
+bool			handle_config_section(t_cube *cube, int fd, char *line, bool *in_map);
+bool			validate_map_line_or_fail(t_cube *cube, int fd, char *line);
+bool			ensure_raw_capacity(t_cube *cube, t_parse_ctx *ctx);
+bool			parse_one_map_row(t_cube *cube, int fd, char *line, int row);
+bool			finalize_map_or_fail(t_cube *cube, int row);
+bool			parse_cub_read_loop(t_cube *cube, t_parse_ctx *ctx);
 
 #endif

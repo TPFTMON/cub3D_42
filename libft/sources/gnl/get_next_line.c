@@ -99,6 +99,11 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*rest[GNL_OPEN_MAX];
 
+	if (fd == -1)
+	{
+		gnl_clear_all(rest);
+		return (NULL);
+	}
 	if (fd < 0 || GNL_BUFFER_SIZE <= 0 || fd >= GNL_OPEN_MAX)
 		return (0);
 	rest[fd] = ft_read_to_rest(fd, rest[fd]);

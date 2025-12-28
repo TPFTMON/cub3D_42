@@ -68,6 +68,7 @@ size_t				ft_strlen_gnl(char *string);
 char				*ft_strchr_gnl(char *string, int occurance);
 char				*ft_strjoin_gnl(char *rest, char *buff);
 char				*ft_free_rest_gnl(char **rest);
+void				gnl_clear_all(char **rest);
 
 // conversion functions, conversion:
 int					ft_atoi(const char *str);

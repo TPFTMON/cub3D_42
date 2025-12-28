@@ -70,3 +70,19 @@ char	*ft_strjoin_gnl(char *rest, char *buff)
 	ft_free_rest_gnl(&rest);
 	return (merge);
 }
+
+void	gnl_clear_all(char **rest)
+{
+	int	i;
+
+	i = 0;
+	while (i < GNL_OPEN_MAX)
+	{
+		if (rest[i])
+		{
+			free(rest[i]);
+			rest[i] = NULL;
+		}
+		i++;
+	}
+}
