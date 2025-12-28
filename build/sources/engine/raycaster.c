@@ -68,7 +68,11 @@ void	init_ray(t_ray *ray, int x, t_cube *cube)
 	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
 	ray->dir_x = cube->player.dir_x + cube->player.plane_x * ray->camera_x;
 	ray->dir_y = cube->player.dir_y + cube->player.plane_y * ray->camera_x;
-	ray->delta_dist_x = fabs(1 / ray->dir_x); // division by 0 (?)
+	if (ray->dir_x == 0)
+		ray->dir_x = 0.00001;
+	if (ray->dir_y == 0)
+		ray->dir_y = 0.00001;
+	ray->delta_dist_x = fabs(1 / ray->dir_x);
 	ray->delta_dist_y = fabs(1 / ray->dir_y);
 	init_step_and_dist(ray, cube);
 }

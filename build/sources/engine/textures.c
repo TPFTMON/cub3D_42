@@ -30,6 +30,19 @@ static t_img	*get_texture(t_cube *cube, t_ray *ray)
 	}
 }
 
+static void	draw_columns(t_render render, t_ray *ray, int x, t_cube *cube)
+{
+	while (render.y < ray->draw_end)
+	{
+		render.tex_y = (int)render.tex_pos % render.texture->height;
+		render.tex_pos += render.step;
+		render.color = get_pixel_color(render.texture, render.tex_x,
+				render.tex_y);
+		my_pixel_put(&cube->screen, x, render.y, render.color);
+		render.y++;
+	}
+}
+
 void	render_wall_strip(t_ray *ray, int x, t_cube *cube)
 {
 	t_render	render;
@@ -45,16 +58,11 @@ void	render_wall_strip(t_ray *ray, int x, t_cube *cube)
 		render.tex_x = render.texture->width - render.tex_x - 1;
 	if (ray->side == 1 && ray->dir_y < 0)
 		render.tex_x = render.texture->width - render.tex_x - 1;
+	if (ray->line_height == 0)
+		ray->line_height = 1;
 	render.step = 1.0 * render.texture->height / ray->line_height;
 	render.tex_pos = (ray->draw_start - WIN_HEIGHT / 2 + ray->line_height / 2)
 		* render.step;
 	render.y = ray->draw_start;
-	while (render.y < ray->draw_end)
-	{
-		render.tex_y = (int)render.tex_pos % render.texture->height;
-		render.tex_pos += render.step;
-		render.color = get_pcolor(render.texture, render.tex_x, render.tex_y);
-		my_pixel_put(&cube->screen, x, render.y, render.color);
-		render.y++;
-	}
+	draw_columns(render, ray, x, cube);
 }

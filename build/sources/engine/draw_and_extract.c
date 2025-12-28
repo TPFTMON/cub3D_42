@@ -56,7 +56,7 @@ void	draw_ceiling_floor(t_img *img, int ceil_col, int floor_col)
 }
 
 // Purpose: Get the color of a specific pixel from a texture structure
-int	get_pcolor(t_img *tex, int x, int y)
+int	get_pixel_color(t_img *tex, int x, int y)
 {
 	int		offset;
 	char	*dest;

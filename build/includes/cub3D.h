@@ -81,7 +81,7 @@
 # define MSG_EXIT "\e[1;32mExiting cub3D... Bye!\e[0m\n"
 
 // --- Internal Stuff ---
-# define MOVE_SPEED 0.013
+# define MOVE_SPEED 0.012
 # define ROT_SPEED 0.01
 
 // ================================================================
@@ -256,7 +256,7 @@ void			perform_raycasting(t_cube *cube);
 // draw_and_extract.c
 void			my_pixel_put(struct s_img *img, int x, int y, int color);
 void			draw_ceiling_floor(t_img *img, int ceil_col, int floor_col);
-int				get_pcolor(t_img *tex, int x, int y);
+int				get_pixel_color(t_img *tex, int x, int y);
 
 // player_move.c
 void			move_player_forward(t_cube *cube);
