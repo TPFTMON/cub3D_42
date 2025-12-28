@@ -3,9 +3,18 @@ SO maps/textures/basic/south.xpm
 WE maps/textures/basic/west.xpm
 EA maps/textures/basic/east.xpm
 
+L ImportantThing = 4
+
 F 220,100,0
 C 225,30,0
 
-11111
-1N001
-111
+1111111111
+1000000001
+1000000001
+1000000001
+1000010001
+1000000001
+1000000001
+10000N0001
+1000000001
+1111111111
