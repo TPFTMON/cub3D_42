@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 {
 	t_cube	*cube;
 
-	// WE DON'T HAVE A CHECK FOR NOT A .cub FILE
 	if (argc != 2 || ft_strcmp(".cub", ft_strrchr(argv[1], '.')))
 		handle_error("Correct format: ./cub3D <map.cub>");
 	cube = init_data_cube();
@@ -30,7 +29,6 @@ int	main(int argc, char **argv)
 		ft_cleanup(cube);
 		return (EXC_PARS);
 	}
-	//printf("has_spawn=%d spawn=(%d, %d) dir=%d\n", cube->map.has_spawn, cube->map.spawn_x, cube->map.spawn_y, cube->map.player_direction);
 	print_grid(&cube->map);
 	init_player(cube);
 	setup_mlx_and_engine(cube);

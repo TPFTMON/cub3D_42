@@ -171,7 +171,7 @@ typedef struct s_texparse
 	char		*p_out;
 }				t_texparse;
 
-typedef struct	s_parse_ctx
+typedef struct s_parse_ctx
 {
 	int			fd;
 	char		*line;
@@ -179,7 +179,6 @@ typedef struct	s_parse_ctx
 	int			*capacity;
 	bool		in_map;
 }				t_parse_ctx;
-
 
 typedef struct s_cube
 {
@@ -247,7 +246,6 @@ typedef struct s_render
 // game_loop.c
 int				game_loop(void *arg);
 void			update_player(t_cube *cube);
-// void			update_player(t_cube *cube, double effective_move_speed, double effective_rot_speed);
 
 // hooks.c
 void			init_hooks(t_cube *cube);
@@ -265,29 +263,23 @@ void			move_player_forward(t_cube *cube);
 void			move_player_backward(t_cube *cube);
 void			move_player_left(t_cube *cube);
 void			move_player_right(t_cube *cube);
-// void			move_player_forward(t_cube *cube, double effective_move_speed);
-// void			move_player_backward(t_cube *cube, double effective_move_speed);
-// void			move_player_left(t_cube *cube, double effective_move_speed);
-// void			move_player_right(t_cube *cube, double effective_move_speed);
 
 // player_view.c
 void			shift_view_left(t_cube *cube);
 void			shift_view_right(t_cube *cube);
-// void			shift_view_left(t_cube *cube, double effective_rot_speed);
-// void			shift_view_right(t_cube *cube, double effective_rot_speed);
 
 // textures.c
 void			render_wall_strip(t_ray *ray, int x, t_cube *cube);
 void			free_texture_paths(t_map *map);
 
 // testing engine:
-void			test_ALL_engine(t_cube *cube);
-void			test_set_ceil_floor(t_cube *cube);
-void			test_fill_grid(t_map *map, int width, int height);
-void			test_set_position_on_grid(t_cube *cube, int x, int y);
-void			print_grid(t_map *map);
-void			render_test_flat_color(t_ray *ray, int x, t_cube *cube);
-// void    test_set_player(t_cube *cube);
+// void			test_ALL_engine(t_cube *cube);
+// void			test_set_ceil_floor(t_cube *cube);
+// void			test_fill_grid(t_map *map, int width, int height);
+// void			test_set_position_on_grid(t_cube *cube, int x, int y);
+// void			print_grid(t_map *map);
+// void			render_test_flat_color(t_ray *ray, int x, t_cube *cube);
+// void			test_set_player(t_cube *cube);
 
 // -------------------- core --------------------
 // init.c
@@ -314,10 +306,12 @@ int				is_valid_map_char(char c);
 int				pack_rgb(int r, int g, int b);
 int				starts_with_id(const char *s, const char *id);
 const char		*text_id(t_tex t);
-bool			parse_texture(t_cube *cube, t_map *map, char *line, t_tex texture_type);
+bool			parse_texture(t_cube *cube, t_map *map, char *line,
+					t_tex texture_type);
 bool			parse_u8(t_cube *cube, char **p, int *out);
 bool			expect_char(t_cube *cube, char **p, char c);
-bool			parse_floor_ceiling_colors(t_cube *cube, t_map *map, char *line);
+bool			parse_floor_ceiling_colors(t_cube *cube, t_map *map,
+					char *line);
 bool			set_spawn(t_cube *cube, t_map *map, t_spawn spawn);
 bool			parse_map(t_cube *cube, t_map *map, char *line, int row);
 char			cell(t_map *m, int y, int x);
@@ -333,8 +327,10 @@ void			parser_perror_and_setexit(t_cube *cube);
 void			parser_cleanup_map(t_map *map);
 void			gnl_clear(void);
 bool			parse_fail(t_cube *cube, int fd, char *line, const char *msg);
-bool			parse_open_and_init(t_cube *cube, const char *path, int *fd, int *capacity);
-bool			handle_config_section(t_cube *cube, int fd, char *line, bool *in_map);
+bool			parse_open_and_init(t_cube *cube, const char *path, int *fd,
+					int *capacity);
+bool			handle_config_section(t_cube *cube, int fd, char *line,
+					bool *in_map);
 bool			validate_map_line_or_fail(t_cube *cube, int fd, char *line);
 bool			ensure_raw_capacity(t_cube *cube, t_parse_ctx *ctx);
 bool			parse_one_map_row(t_cube *cube, int fd, char *line, int row);

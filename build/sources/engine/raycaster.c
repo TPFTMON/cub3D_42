@@ -32,16 +32,8 @@ void	perform_raycasting(t_cube *cube)
 	}
 }
 
-// Purpose: Calculate dir, delta_dist, step, and initial side_dist
-void	init_ray(t_ray *ray, int x, t_cube *cube)
+static void	init_step_and_dist(t_ray *ray, t_cube *cube)
 {
-	ray->map_x = cube->player.pos_x;
-	ray->map_y = cube->player.pos_y;
-	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
-	ray->dir_x = cube->player.dir_x + cube->player.plane_x * ray->camera_x;
-	ray->dir_y = cube->player.dir_y + cube->player.plane_y * ray->camera_x;
-	ray->delta_dist_x = fabs(1 / ray->dir_x); // division by 0 (?)
-	ray->delta_dist_y = fabs(1 / ray->dir_y);
 	if (ray->dir_x < 0)
 	{
 		ray->step_x = -1;
@@ -66,6 +58,19 @@ void	init_ray(t_ray *ray, int x, t_cube *cube)
 		ray->side_dist_y = (ray->map_y + 1.0 - cube->player.pos_y)
 			* ray->delta_dist_y;
 	}
+}
+
+// Purpose: Calculate dir, delta_dist, step, and initial side_dist
+void	init_ray(t_ray *ray, int x, t_cube *cube)
+{
+	ray->map_x = cube->player.pos_x;
+	ray->map_y = cube->player.pos_y;
+	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	ray->dir_x = cube->player.dir_x + cube->player.plane_x * ray->camera_x;
+	ray->dir_y = cube->player.dir_y + cube->player.plane_y * ray->camera_x;
+	ray->delta_dist_x = fabs(1 / ray->dir_x); // division by 0 (?)
+	ray->delta_dist_y = fabs(1 / ray->dir_y);
+	init_step_and_dist(ray, cube);
 }
 
 // Purpose: Loop until wall is hit
@@ -96,7 +101,7 @@ void	find_wall_dda(t_ray *ray, t_cube *cube)
 }
 
 // Purpose: Calculate wall height :)
-void	calculate_wall_height(t_ray *ray /*, t_cube *cube*/)
+void	calculate_wall_height(t_ray *ray)
 {
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);

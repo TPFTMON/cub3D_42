@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "cub3D.h"
+#include "cub3D.h"
 
 // void	test_ALL_engine(t_cube *cube){
 // 	test_set_ceil_floor(cube);
@@ -72,29 +72,30 @@
 //     map->grid[height / 2][width / 2] = '1'; // single center wall
 // }
 
- void    print_grid(t_map *map){
-     if (!map->raw)
-         return ;
-     for (int i = 0; map->raw[i]; i++){
-         for (int j = 0; map->raw[i][j]; j++){
-             printf("%c", map->raw[i][j]);
-         }
-         printf("\n");
-     }
-     printf("---\n");
-     if (!map->grid)
-         return ;
-     for (int i = 0; map->grid[i]; i++){
-         for (int j = 0; map->grid[i][j]; j++){
-             printf("%c", map->grid[i][j]);
-         }
-         printf("\n");
-     }
- }
+//  void    print_grid(t_map *map){
+//  if (!map->raw)
+//  return ;
+//  for (int i = 0; map->raw[i]; i++){
+//  for (int j = 0; map->raw[i][j]; j++){
+//  printf("%c", map->raw[i][j]);
+//  }
+//  printf("\n");
+//  }
+//  printf("---\n");
+//  if (!map->grid)
+//  return ;
+//  for (int i = 0; map->grid[i]; i++){
+//  for (int j = 0; map->grid[i][j]; j++){
+//  printf("%c", map->grid[i][j]);
+//  }
+//  printf("\n");
+//  }
+//  }
 
 // void    test_set_position_on_grid(t_cube *cube, int x, int y){
 // 	cube->map.player_direction = NO;
-//     if (cube->map.grid[y][x] != '1' /*&& x < cube->map.width && y < cube->map.height*/)
+//     if (cube->map.grid[y][x] != '1' /*&& x < cube->map.width
+	// && y < cube->map.height*/)
 //         cube->map.grid[y][x] = 'N';
 //     else
 // 		printf("WRONG VALUE FOR POSITION, BRO\n");
@@ -139,7 +140,9 @@
 //     cube->player.pos_x = 1.5;
 //     cube->player.pos_y = 8.5;
 
-//     if (cube->map.grid[(int)cube->player.pos_y][(int)cube->player.pos_x] == '1'){
-//         cube->player.pos_x += 1.0; // Shift them slightly if they spawned in a wall
+//     if
+// (cube->map.grid[(int)cube->player.pos_y][(int)cube->player.pos_x] == '1'){
+//         cube->player.pos_x += 1.0;
+	// Shift them slightly if they spawned in a wall
 //     }
 // }
