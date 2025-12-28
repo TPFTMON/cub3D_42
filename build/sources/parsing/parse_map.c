@@ -37,7 +37,7 @@ bool	set_spawn(t_cube *cube, t_map *map, t_spawn spawn)
 
 static bool	scan_map_line(t_cube *cube, t_map *map, char *dup, int row)
 {
-	int	x;
+	int		x;
 	t_spawn	spawn;
 
 	x = 0;
@@ -61,7 +61,7 @@ static bool	scan_map_line(t_cube *cube, t_map *map, char *dup, int row)
 bool	parse_map(t_cube *cube, t_map *map, char *line, int row)
 {
 	char	*dup;
-	int	len;
+	int		len;
 
 	if (!cube || !map || !line)
 		return (parser_error(cube, "Parser: internal null in parse_map"));

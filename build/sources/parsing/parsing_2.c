@@ -73,7 +73,7 @@ bool	validate_map_line_or_fail(t_cube *cube, int fd, char *line)
 bool	ensure_raw_capacity(t_cube *cube, t_parse_ctx *ctx)
 {
 	char	**new_raw;
-	int	i;
+	int		i;
 
 	if (!cube || !ctx || !ctx->capacity)
 		return (parser_error(cube,

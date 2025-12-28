@@ -12,6 +12,14 @@
 
 #include "cub3D.h"
 
+bool	parse_one_map_row(t_cube *cube, int fd, char *line, int row)
+{
+	if (!parse_map(cube, &cube->map, line, row))
+		return (parse_fail(cube, fd, line, NULL));
+	free(line);
+	return (true);
+}
+
 bool	starts_with_id_local(const char *s, const char *id)
 {
 	size_t	i;

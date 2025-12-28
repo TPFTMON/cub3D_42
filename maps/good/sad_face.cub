@@ -1,8 +1,7 @@
-NO textures/simonkraft/soul_sand.xpm
-SO textures/simonkraft/soul_soil_01.xpm
-WE textures/simonkraft/soul_soil.xpm
-EA textures/simonkraft/soul_sand.xpm
-
+NO maps/textures/basic/north.xpm
+SO maps/textures/basic/south.xpm
+WE maps/textures/basic/west.xpm
+EA maps/textures/basic/east.xpm
 C 14,48,183
 F 41,240,207
 

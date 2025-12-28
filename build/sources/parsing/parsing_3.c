@@ -6,19 +6,11 @@
 /*   By: imirzaev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:23:00 by imirzaev          #+#    #+#             */
-/*   Updated: 2025/12/28 17:27:27 by imirzaev         ###   ########.fr       */
+/*   Updated: 2025/12/28 18:48:31 by imirzaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-bool	parse_one_map_row(t_cube *cube, int fd, char *line, int row)
-{
-	if (!parse_map(cube, &cube->map, line, row))
-		return (parse_fail(cube, fd, line, NULL));
-	free(line);
-	return (true);
-}
 
 bool	finalize_map_or_fail(t_cube *cube, int row)
 {
@@ -38,28 +30,40 @@ bool	finalize_map_or_fail(t_cube *cube, int row)
 	return (true);
 }
 
+static bool	process_cub_line(t_cube *cube, t_parse_ctx *ctx)
+{
+	if (!ctx->in_map)
+	{
+		if (!handle_config_section(cube, ctx->fd, ctx->line, &ctx->in_map))
+			return (false);
+		if (!ctx->in_map)
+		{
+			ctx->line = get_next_line(ctx->fd);
+			return (true);
+		}
+	}
+	if (!validate_map_line_or_fail(cube, ctx->fd, ctx->line))
+		return (false);
+	if (!ensure_raw_capacity(cube, ctx))
+		return (false);
+	if (!parse_one_map_row(cube, ctx->fd, ctx->line, ctx->row))
+		return (false);
+	ctx->row++;
+	ctx->line = get_next_line(ctx->fd);
+	return (true);
+}
+
 bool	parse_cub_read_loop(t_cube *cube, t_parse_ctx *ctx)
 {
 	if (!cube || !ctx || ctx->fd < 0 || !ctx->capacity)
 		return (false);
 	ctx->in_map = false;
 	ctx->row = 0;
-	while ((ctx->line = get_next_line(ctx->fd)) != NULL)
+	ctx->line = get_next_line(ctx->fd);
+	while (ctx->line != NULL)
 	{
-		if (!ctx->in_map)
-		{
-			if (!handle_config_section(cube, ctx->fd, ctx->line, &ctx->in_map))
-				return (false);
-			if (!ctx->in_map)
-				continue ;
-		}
-		if (!validate_map_line_or_fail(cube, ctx->fd, ctx->line))
+		if (!process_cub_line(cube, ctx))
 			return (false);
-		if (!ensure_raw_capacity(cube, ctx))
-			return (false);
-		if (!parse_one_map_row(cube, ctx->fd, ctx->line, ctx->row))
-			return (false);
-		ctx->row++;
 	}
 	return (true);
 }

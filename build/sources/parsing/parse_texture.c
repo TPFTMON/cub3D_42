@@ -41,7 +41,7 @@ const char	*text_id(t_tex t)
 
 static bool	parse_texture_header(t_cube *cube, t_texparse *ctx)
 {
-	char	*p;
+	char		*p;
 	const char	*id;
 
 	if (!cube || !ctx || !ctx->map || !ctx->line)
@@ -90,7 +90,7 @@ static bool	extract_texture_path(t_cube *cube, char *p, char **path_out)
 bool	parse_texture(t_cube *cube, t_map *map, char *line, t_tex texture_type)
 {
 	t_texparse	ctx;
-	char	*path;
+	char		*path;
 
 	ctx.map = map;
 	ctx.line = line;

@@ -14,7 +14,7 @@
 
 char	*skip_spaces(char *s)
 {
-	while (s && *s && ft_isspace(*s))//add \t, \r, etc to ft_isspace??
+	while (s && *s && ft_isspace(*s))
 		s++;
 	return (s);
 }
